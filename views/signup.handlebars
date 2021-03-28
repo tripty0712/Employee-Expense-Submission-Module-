@@ -1,0 +1,53 @@
+  <div class="container">
+   
+        <div class="d-flex justify-content-center h-100">
+        
+          <div class="card">
+            <div class="card-header">
+              <h3>Register Employee</h3>
+            
+            </div>
+            <div>   {{#if message}}
+    <p class="alert alert-warning">{{message}}</p>
+  {{/if}}</div>
+            <div class="card-body">
+             <form action="signup" method="POST" oninput='pwd2.setCustomValidity(pwd2.value != pwd1.value ? "Passwords do not match." : "")'>
+ 
+                
+                <div class="input-group form-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                  </div>
+                  <input type="text" name="empId" class="form-control" placeholder="Employee Id" required>
+                  
+                </div>
+                <div class="input-group form-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                  </div>
+                  <input type="email" name="email" class="form-control" placeholder="Email address" required>
+                  
+                </div>
+                <div class="input-group form-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-key"></i></span>
+                  </div>
+                  <input type="password" name="password" class="form-control" placeholder="password" id="pwd1" required >
+                </div>
+                
+                <div class="input-group form-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-key"></i></span>
+                  </div>
+                  <input type="password" class="form-control" placeholder="Confirm password" id="pwd2" required>
+                </div>
+                <div class="form-group">
+                  <input type="submit" value="Register" class="btn float-right login_btn">
+                </div>
+              </form>
+            </div>
+ 
+          </div>
+        </div>
+      </div>
+  

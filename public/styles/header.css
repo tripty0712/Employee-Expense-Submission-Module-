@@ -1,0 +1,16 @@
+
+@import url('https://fonts.googleapis.com/css?family=Numans');
+.heading {
+      
+   text-align: center;
+    text-transform: uppercase;
+    font-family: Raleway, sans-serif;
+    color: #fff;
+    font-weight: bold;
+    text-indent: 2px;
+    background-color: rgba(0,0,0,0.5);
+  height:40px;
+    align-items: center;
+    padding-top: 2px;
+  }
+  

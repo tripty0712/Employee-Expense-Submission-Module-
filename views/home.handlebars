@@ -1,0 +1,43 @@
+<div class="container">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-8"><h2>Employee Expense <b>Details</b></h2></div>
+                    <div class="col-sm-4">
+                        <a href="addNewExpense"><button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add New</button></a>
+                    </div>
+                </div>
+            </div>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Expense Type</th>
+                        <th>Expense Date</th>
+                        <th>Receipt</th>
+                        <th>Amount</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+               
+                <tbody>
+                {{#each empExpenseList}}
+                   <tr>
+                        <td>{{expType}}</td>
+                        <td> {{expDate}}</td>
+                        <td>  {{expReceipt}}</td>
+                        <td> ${{expAmount}}</td>
+                        <td>
+						<a class="add" title="Add" data-toggle="tooltip" id={{_id}}><i class="material-icons">&#xE03B;</i></a>
+                            <a class="edit" title="Edit" data-toggle="tooltip" id={{_id}}><i class="material-icons">&#xE254;</i></a>
+                            <a class="delete" title="Delete" data-toggle="tooltip" id={{_id}}><i class="material-icons">&#xE872;</i></a>
+                        </td>
+                    </tr>
+                {{/each}}         
+                </tbody>
+               
+            </table>
+        </div>
+    </div>     
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="scripts/script.js"></script>
