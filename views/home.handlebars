@@ -27,14 +27,14 @@
                         <td>  {{expReceipt}}</td>
                         <td> ${{expAmount}}</td>
                         <td>
-						<a class="add" title="Add" data-toggle="tooltip" id={{_id}}><i class="material-icons">&#xE03B;</i></a>
-                            <a class="edit" title="Edit" data-toggle="tooltip" id={{_id}}><i class="material-icons">&#xE254;</i></a>
-                            <a class="delete" title="Delete" data-toggle="tooltip" id={{_id}}><i class="material-icons">&#xE872;</i></a>
+						<a href ='javascript:void(0)', data-id="{{_id}}") >Edit</a>
+                            | &nbsp;&nbsp;
+                           <a href="/delete?id={{_id}}", onclick='return confirm("You are going to delete this record. Continue?")')> Delete</a>
+                          
                         </td>
                     </tr>
                 {{/each}}         
                 </tbody>
-               
             </table>
         </div>
     </div>     

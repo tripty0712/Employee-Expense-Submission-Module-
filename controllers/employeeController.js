@@ -1,5 +1,5 @@
 const { registerEmployee,loginUser} = require("../services/empAuthService.js");
-const { renderHomeGrid}= require("./expenseSubmissionController");
+
 
 function renderSignupForm(req, res) {
     res.render("signup",{
@@ -39,6 +39,7 @@ else if(token === 'NOT_VALID_EMP')
       
       res.cookie("jwt", token, { httpOnly: true });
       message = "You have successfully logged in";
+      
      res.redirect('/home');
     } 
     else {
@@ -72,7 +73,6 @@ else if(token === 'NOT_VALID_EMP')
     processSignupSubmission,
     renderLoginForm,
     processLoginSubmission,
-    renderResetPasswordRequestForm,
-    processResetPasswordSubmission,
+    
   };
   

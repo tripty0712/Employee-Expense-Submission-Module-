@@ -2,11 +2,8 @@
 
 @import url('https://fonts.googleapis.com/css?family=Numans');
 
-html,body{
-background-image: url('/imgs/wallpapaper/loginBackground.jpg');
-background-size: cover;
-background-repeat: no-repeat;
-height: 100%;
+html{
+
 font-family: 'Numans', sans-serif;
 }
 
@@ -22,6 +19,15 @@ margin-bottom: auto;
 width: 400px;
 background-color: rgba(0,0,0,0.5) !important;
 }
+
+.cardInput{
+  height: 460px;
+  margin-top:30px;
+  margin-bottom: auto;
+  width: 450px;
+  background-color: rgba(0,0,0,0.5) !important;
+  }
+
 
 .social_icon span{
 font-size: 68px;
@@ -45,11 +51,23 @@ top: -45px;
 }
 
 .input-group-prepend span{
-width: 50px;
+width: 40px;
 background-color: #FFC312;
 color: black;
 border:0 !important;
 }
+
+.input-group-label{
+  width: 150px;
+  background-color: #FFC312;
+  color: black;
+  border:0 !important;
+  margin-bottom: 2px;
+  height:28px;
+ vertical-align: middle;
+ padding-top: 2px;
+  }
+  
 
 input:focus{
 outline: 0 0 0 0  !important;

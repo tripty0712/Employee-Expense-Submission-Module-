@@ -1,8 +1,12 @@
-const {getEmpExpenseList, createExpense}=require("../services/expSubmissionService.js")
+    
+    const {getEmpExpenseList, 
+          createExpense,
+          deleteExpenseRecord,
+          updateExpenseRecord,
+          fetchExpenseRecord,}=require("../services/expSubmissionService.js")
 const expenseType = require("../data/expenseType.js");
 
-const auth = require("../utils/auth.js");
-const { signedCookies } = require("cookie-parser");
+
 
  function renderAddExpense(req, res) {
           res.render("addNewExpense", {expenseType });
@@ -14,14 +18,48 @@ async function processAddExpenseForm(req, res) {
      
     const addExpense= await createExpense(req.empId);
     if(addExpense)   
-    {
-     const empExpenseList = await getEmpExpenseList(req.empId)
-        res.render("home",{Expenselist :empExpenseList , 
-          layout: "main",
- });
+    {  res.redirect('/home');     
 }
 }
 
+async function processDeleteExpenseForm(req, res) {
+     
+  const id = req.query.id;
+  const isDeleted= await deleteExpenseRecord(id);
+   if(isDeleted)   
+  {
+   
+     res.redirect('/home'); 
+    
+ }
+
+}
+
+async function fetchEditDataForm(req, res) {
+     
+  const id = req.query.id;
+  const data =[];
+   data=await fetchExpenseRecord(id);
+   if(data)   
+  {
+   
+   return data;
+    
+ }
+
+}
+async function updateEditDataForm(req, res) {
+     
+  const id = req.query.id;
+  const data = await updateExpenseRecord(id);
+   if(data)   
+  {
+   
+   return data;
+    
+ }
+
+}
 
     
 async function renderHomeGrid(req, res) {
@@ -35,6 +73,8 @@ async function renderHomeGrid(req, res) {
   module.exports = {
      renderAddExpense,
      processAddExpenseForm,
+     processDeleteExpenseForm,
+     fetchEditDataForm,
+     updateEditDataForm,
      renderHomeGrid,
-    
    };

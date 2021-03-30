@@ -18,9 +18,37 @@ async function getEmpExpenseList(empId)
 
 }
 
+
+async function deleteExpenseRecord(recordId)
+{
+ 
+   return await empExpense.deleteOne({_id:recordId}).exec();
+    
+
+}
+
+
+async function fetchExpenseRecord(recordId)
+{
+ 
+   return await empExpense.findById({_id:recordId}).exec();
+    
+
+}
+async function updateExpenseRecord(recordId)
+{
+ 
+return await empExpense.updateOne({_id:recordId},{ $set: {'product_name': product_name, 'price': price, 'category': category } });
+//return null;    
+
+}
+
 module.exports={
-    createExpense,
     getEmpExpenseList,
+    createExpense,
+    deleteExpenseRecord,
+    updateExpenseRecord,
+    fetchExpenseRecord,
 };
 
 

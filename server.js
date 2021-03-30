@@ -10,6 +10,9 @@ const {
   renderHomeGrid ,
  renderAddExpense,
  processAddExpenseForm,
+ processDeleteExpenseForm,
+ fetchEditDataForm,
+ updateEditDataForm,
   } = require("./controllers/expenseSubmissionController.js");
  
 const {
@@ -37,8 +40,10 @@ app.use(express.static(__dirname + "/public"));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cookieParser());
-app.use(authenticateUser);
+
 // routing
+
+
 
 
 app.get("/signup", renderSignupForm);
@@ -46,12 +51,18 @@ app.post("/signup", processSignupSubmission);
 
 app.get("/login", renderLoginForm);
 app.post("/login", processLoginSubmission);
+app.use(authenticateUser);
 
 app.get("/home", renderHomeGrid);
 app.get("/addNewExpense",renderAddExpense);
 app.post("/addNewExpense",processAddExpenseForm);
 //app.post("/login", processLoginSubmission);
 
+app.get('/delete', processDeleteExpenseForm );
+app.get('/fetch',fetchEditDataForm ) ;
+app.post('/edit',updateEditDataForm ) ;
+
+ 
 //app.get("/forgotPassword", renderResetPasswordRequestForm);
 //app.post("/forgotPassword", processResetPasswordSubmission);
 

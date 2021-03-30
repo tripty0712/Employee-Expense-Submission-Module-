@@ -15,8 +15,8 @@ const empExpenseSchema = db.Schema({
   managerId:{ type: String,  trim:true},
   expStatus:{type:String } ,
   createdDate:{type : Date},
- // expType: { type: String, enum: expenseType,
- // },
+ expType: { type: String, enum: expenseType,
+  },
 });
 
 
