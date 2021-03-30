@@ -15,13 +15,13 @@
     <p class="alert alert-warning">{{message}}</p>
   {{/if}}</div>
             <div class="card-body">
-             <form action="submit" method="POST" >
+             <form action="addNewExpense" method="POST" >
  
                 
                 <div class="input-group form-group">
                   <div class="input-group-label">Expense Type : </div>
                     <span ></span> 
-                    <select name="expenseType" id="expType" class="form-control" >
+                    <select name="expType" id="expType" class="form-control" required="true" >
                         <option value="Select">Select one</option>
                           {{#each expenseType}}
                             <option value={{this}}>{{this}}</option>
@@ -31,22 +31,22 @@
                 <div class="input-group form-group">
                   <div class="input-group-label">Expense Date : </div>
                     <span ></span> 
-                  <input type= "text" class= "form-control" id= "datePicker1" placeholder= "Enter date" >
+                  <input type= "text" class= "form-control" id= "datePicker1" placeholder= "Enter date" name="expDate" required >
                   
                 </div>
                <div class="input-group form-group">
                   <div class="input-group-label">Expense Receipt : </div>
                     <span ></span> 
-                 <input type="file" class="float-right form-control"  placeholder= "Choose file">
+                 <input type="file" class="float-right form-control"  placeholder= "Choose file" name="expReceipt">
                    </div>
                 
                 <div class="input-group form-group">
                   <div class="input-group-label">Expense Amount : </div>
                     <span ></span>
-                  <input type="text"   class="form-control" placeholder= "Enter Amount" required>
+                  <input type="text"   class="form-control" placeholder= "Enter Amount" required name="expAmount">
                 </div>
                 <div class="float-right form-group">
-                  <input type="submit" value="Submit" class="btn  login_btn" name="submit">
+                  <input type="submit" value="Create" class="btn  login_btn" name="submit">
                   <span >   </span>
                    <input class="btn  login_btn" type="reset" value="Reset" >
                 </div>

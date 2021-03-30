@@ -15,8 +15,11 @@ const expenseType = require("../data/expenseType.js");
     
     
 async function processAddExpenseForm(req, res) {
-     
-    const addExpense= await createExpense(req.empId);
+    
+    console.log('Before add: ' + ({ ...req.body })); 
+    const addExpense= await createExpense({ ...req.body },req.empId);
+    
+    console.log('after add: ' + addExpense ) 
     if(addExpense)   
     {  res.redirect('/home');     
 }
@@ -38,8 +41,8 @@ async function processDeleteExpenseForm(req, res) {
 async function fetchEditDataForm(req, res) {
      
   const id = req.query.id;
-  const data =[];
-   data=await fetchExpenseRecord(id);
+  let data =[];
+   data =await fetchExpenseRecord(id);
    if(data)   
   {
    

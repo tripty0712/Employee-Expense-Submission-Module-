@@ -1,10 +1,14 @@
 const empExpense = require("../models/empExpense.js");
 
 
-async function createExpense(empId)
+async function createExpense(fields,employeeId)
 {
+   console.log('in create');
+  
+   let date = getDateTime();
+    //let expDate=getDate(fields.getDate);
     return new empExpense({
-        ...fields,
+        ...fields,empId:employeeId,createdDate: date
         
         }).save();
 
@@ -42,6 +46,36 @@ return await empExpense.updateOne({_id:recordId},{ $set: {'product_name': produc
 //return null;    
 
 }
+
+function getDateTime()
+{
+   var today = new Date();
+
+   var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+   
+   var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+   
+   var dateTime = date+' '+time;
+   
+return dateTime;
+
+
+}
+
+
+function getDate(dateToformat)
+{
+   var today = dateToformat;
+
+   var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+   
+   
+return date;
+
+
+}
+
+
 
 module.exports={
     getEmpExpenseList,

@@ -54,15 +54,14 @@ app.post("/login", processLoginSubmission);
 app.use(authenticateUser);
 
 app.get("/home", renderHomeGrid);
+
 app.get("/addNewExpense",renderAddExpense);
 app.post("/addNewExpense",processAddExpenseForm);
-//app.post("/login", processLoginSubmission);
-
+app.get("/editExpense",fetchEditDataForm);
+app.post("/editExpense",updateEditDataForm);
 app.get('/delete', processDeleteExpenseForm );
-app.get('/fetch',fetchEditDataForm ) ;
-app.post('/edit',updateEditDataForm ) ;
 
- 
+
 //app.get("/forgotPassword", renderResetPasswordRequestForm);
 //app.post("/forgotPassword", processResetPasswordSubmission);
 

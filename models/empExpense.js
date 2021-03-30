@@ -8,14 +8,14 @@ const expenseType = require("../data/expenseType.js");
 //define empExpense collection schema
 const empExpenseSchema = db.Schema({
   _id: { type: String, default: cuid },
-  empId:{ type:Number,unique:false, trim:true},
+  empId:{ type:Number,required:true},
   expDate: { type:Date, required: true },
   expAmount: { type:Number, required: true},
   expReceipt:{ type: String },
   managerId:{ type: String,  trim:true},
   expStatus:{type:String } ,
   createdDate:{type : Date},
- expType: { type: String, enum: expenseType,
+ expType: { type: String, enum: expenseType,required:true
   },
 });
 
