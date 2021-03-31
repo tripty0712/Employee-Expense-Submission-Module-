@@ -20,6 +20,7 @@ const {
   processSignupSubmission,
   renderLoginForm,
   processLoginSubmission,
+  renderSignout
  } = require("./controllers/employeeController.js");
 
 
@@ -51,7 +52,10 @@ app.post("/signup", processSignupSubmission);
 
 app.get("/login", renderLoginForm);
 app.post("/login", processLoginSubmission);
+
 app.use(authenticateUser);
+
+app.get("/signout", renderSignout);
 
 app.get("/home", renderHomeGrid);
 

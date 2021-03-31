@@ -13,11 +13,15 @@
         }
     
     .table-wrapper {
-		width: 700px;
+		width: 1000px;
+        height:70% ;
 		margin: 30px auto;
         background: #fff;
         padding:auto;	
-        box-shadow: 0 1px 1px rgba(0,0,0,.05);
+        box-shadow: 0 1px 1px rgba(138, 96, 96, 0.05);
+        scroll-behavior: auto;
+        
+
     }
     .table-title {
         padding-bottom: 10px;

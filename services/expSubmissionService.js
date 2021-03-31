@@ -35,17 +35,19 @@ async function deleteExpenseRecord(recordId)
 async function fetchExpenseRecord(recordId)
 {
  
-   return await empExpense.findById({_id:recordId}).exec();
-    
+ return  await empExpense.findOne({ _id:recordId }).exec();
+   //const data= await empExpense.find({_id:recordId}).exec();
+   
+    //return data;
 
 }
-async function updateExpenseRecord(recordId)
+async function updateExpenseRecord(fields,recordId)
 {
+   console.log ("post  :"+ fields._id);
  
-return await empExpense.updateOne({_id:recordId},{ $set: {'product_name': product_name, 'price': price, 'category': category } });
-//return null;    
-
+return await empExpense.findByIdAndUpdate(recordId,fields,{new :true}).exec();
 }
+
 
 function getDateTime()
 {

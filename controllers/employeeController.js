@@ -53,6 +53,11 @@ else if(token === 'NOT_VALID_EMP')
   }
 
   
+function renderSignout(req, res) {
+  res.clearCookie("jwt");
+  res.render("signout");
+
+}
   function renderResetPasswordRequestForm(req, res) {
     res.render("forgotPassword", {
       layout: "main2",
@@ -73,6 +78,7 @@ else if(token === 'NOT_VALID_EMP')
     processSignupSubmission,
     renderLoginForm,
     processLoginSubmission,
+    renderSignout,
     
   };
   

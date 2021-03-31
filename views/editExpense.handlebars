@@ -3,7 +3,7 @@
 
 
   <div class="container">
-   
+   {{data}}
         <div class="d-flex justify-content-center h-100">
         
           <div class="cardInput">
@@ -15,23 +15,26 @@
     <p class="alert alert-warning">{{message}}</p>
   {{/if}}</div>
             <div class="card-body">
-             <form action="editExpense" method="POST" >
- 
-                
+             <form action="editExpense" method="POST" > 
+
                 <div class="input-group form-group">
                   <div class="input-group-label">Expense Type : </div>
                     <span ></span> 
-                    <select name="expenseType" id="expType" class="form-control" >
+                    <select name="expenseType" id="expType" class="form-control"  >
                         <option value="Select">Select one</option>
                           {{#each expenseType}}
                             <option value={{this}}>{{this}}</option>
                               {{/each}}
+
                   </select>
+               
                 </div>
+ {{@key.expDate}} 
+               
                 <div class="input-group form-group">
                   <div class="input-group-label">Expense Date : </div>
                     <span ></span> 
-                  <input type= "text" class= "form-control" id= "datePicker1" placeholder= "Enter date" >
+                  <input type="text" class= "form-control" name="expDate" id="datePicker" Text={{expDate}} >
                   
                 </div>
                <div class="input-group form-group">
@@ -43,13 +46,15 @@
                 <div class="input-group form-group">
                   <div class="input-group-label">Expense Amount : </div>
                     <span ></span>
-                  <input type="text"   class="form-control" placeholder= "Enter Amount" required>
+                  <input type="text"   class="form-control"  value="{{expAmount}}"  required=true>
                 </div>
                 <div class="float-right form-group">
                   <input type="submit" value="Update" class="btn  login_btn" name="submit">
                   <span >   </span>
                    <input class="btn  login_btn" type="reset" value="Reset" >
                 </div>
+                 <hidden id="hdnID" value={{_id}} name="_id" ></hidden>
+                
               </form>
             </div>
  
@@ -58,14 +63,10 @@
       </div>
   
 <script type="text/javascript">
-            $(function () {
- var date = new Date();
- date.setDate(date.getDate());
- 
-                $('#datePicker1').datepicker({
- endDate: date,
-                });
- $('#datePicker1').datepicker("setDate", new Date());
-            });
-        </script>
+$(function() {
+    $( "#datePicker" ).datepicker({   format: 'mm-dd-yyyy',
+        endDate: '+0d',
+        autoclose: true });
+  });
+         </script>
 
