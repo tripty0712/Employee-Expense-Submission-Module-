@@ -14,15 +14,12 @@ const expenseType = require("../data/expenseType.js");
 
     
     
-async function processAddExpenseForm(req, res) {
-    
+async function processAddExpenseForm(req, res)
+ {
     
     const addExpense= await createExpense({ ...req.body },req.empId);
-    
-    
     if(addExpense)   
-    {  res.redirect('/home');     
-}
+    {  res.redirect('/home'); }
 }
 
 async function processDeleteExpenseForm(req, res) {
@@ -51,9 +48,10 @@ async function fetchEditDataForm(req, res) {
 
 
 async function updateEditDataForm(req, res) {
-
-  const result= await updateExpenseRecord( ...req.body);
-  if(result)
+  const recordId = req.query.id
+  const status= await updateExpenseRecord( {...req.body},recordId,req.empId );
+ console.log(status);
+  if(status)
    res.redirect('/home');   
 
 }
@@ -62,6 +60,7 @@ async function updateEditDataForm(req, res) {
 async function renderHomeGrid(req, res) {
 
     const empExpenseList = await getEmpExpenseList(req.empId);
+    console.log(empExpenseList);
 
     res.render("home",{empExpenseList,
             });

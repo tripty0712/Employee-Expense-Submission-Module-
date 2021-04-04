@@ -20,7 +20,7 @@
                 <div class="input-group form-group">
                   <div class="input-group-label">Expense Type : </div>
                     <span ></span> 
-                    <select name="expenseType" id="expType" class="form-control"  >
+                    <select name="expType" id="expType" class="form-control"  >
                         <option value="Select">Select one</option>
                           {{#each expenseType}}
                             <option value={{this}}>{{this}}</option>
@@ -29,31 +29,32 @@
                   </select>
                
                 </div>
- {{@key.expDate}} 
+ 
                
                 <div class="input-group form-group">
                   <div class="input-group-label">Expense Date : </div>
                     <span ></span> 
-                  <input type="text" class= "form-control" name="expDate" id="datePicker" Text={{expDate}} >
+                  <input type="text" class= "form-control" name="expDate" id="datePicker" autocomplete="off" value={{expDate}}  >
                   
                 </div>
                <div class="input-group form-group">
                   <div class="input-group-label">Expense Receipt : </div>
                     <span ></span> 
-                 <input type="file" class="float-right form-control"  placeholder= "Choose file">
+                 <input type="file" class="form-control-file" id="exampleFormControlFile1" name="expReceipt">
                    </div>
                 
                 <div class="input-group form-group">
                   <div class="input-group-label">Expense Amount : </div>
                     <span ></span>
-                  <input type="text"   class="form-control"  value="{{expAmount}}"  required=true>
+                  <input type="text"   class="form-control" value="{{expAmount}}"  autocomplete="off" name="expAmount" required=true>
                 </div>
                 <div class="float-right form-group">
-                  <input type="submit" value="Update" class="btn  login_btn" name="submit">
+                  <input type="submit" value="Update" class="btn  login_btn"  >
                   <span >   </span>
                    <input class="btn  login_btn" type="reset" value="Reset" >
                 </div>
-                 <hidden id="hdnID" value={{_id}} name="_id" ></hidden>
+                <input type="hidden" value={{_id}} name="_id" >
+                
                 
               </form>
             </div>
@@ -68,5 +69,7 @@ $(function() {
         endDate: '+0d',
         autoclose: true });
   });
+
+  document.getElementById("expType").value = "Misc";
          </script>
 

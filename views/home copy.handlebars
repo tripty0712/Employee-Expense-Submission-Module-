@@ -1,28 +1,27 @@
-
-<!------ Include the above in your HEAD tag ---------->
 <div class="container">
-        <div class="table-wrapper" style="height: 200px;" >
+        <div class="table-wrapper">
             <div class="table-title">
                 <div class="row">
-                    <div class="col-sm-9"><h2>Employee Expense <b>Details</b></h2></div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-8"><h2>Employee Expense <b>Details</b></h2></div>
+                    <div class="col-sm-4">
                         <a href="addNewExpense"><button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add New</button></a>
                     </div>
                 </div>
             </div>
-  <table id="example_table" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%" height="60%">
-                 <thead>
-                     <tr>
-                    <th  scope="col">  <input type="checkbox" id="chkSubmit" >  </th>
-                        <th  scope="col">Expense Type</th>
+            <table   class="table table-bordered">
+                <thead>
+                    <tr><th>Submiision
+                        <input type="checkbox" checked="true" id="chkAll" >
+                    </th>
+                        <th >Expense Type</th>
                         <th>Expense Date</th>
-                        <th  scope="col">Receipt</th>
+                        <th>Receipt</th>
                         <th>Amount</th>
                         <th>Actions</th>
-                 </tr>
+                    </tr>
                 </thead>
                
-                <tbody >
+                <tbody>
                 {{#each empExpenseList}}
                    <tr >
                        <td>
@@ -42,26 +41,8 @@
                 {{/each}}         
                 </tbody>
             </table>
-        
         </div>
     </div>     
 
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="scripts/script.js"></script>
-  
-    <script>
-      $(document).ready( function () {
-          $('#example_table').DataTable({ 
-             "aaSorting": [],
-              columnDefs:
-              [{  orderable: false,  targets: 5  },
-              {  orderable: false,  targets: 0  }],
-              
-  
-});
-
-$('.dataTables_length').addClass('bs-select');
-
-
-      } );
-    </script>
