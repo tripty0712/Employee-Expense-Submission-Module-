@@ -15,7 +15,7 @@
     <p class="alert alert-warning">{{message}}</p>
   {{/if}}</div>
             <div class="card-body">
-             <form action="addNewExpense" method="POST" >
+             <form  method="POST" enctype="multipart/form-data">
  
                 
                 <div class="input-group form-group">
@@ -28,16 +28,18 @@
                               {{/each}}
                   </select>
                 </div>
-                <div class="input-group form-group">
+               <div class="input-group form-group">
                   <div class="input-group-label">Expense Date : </div>
                     <span ></span> 
-                  <input type= "text" class= "form-control" id= "datePicker1" placeholder= "Enter date" name="expDate" required >
+                  <input type="text" class= "form-control" name="expDate" id="datePicker" autocomplete="off"  >
                   
                 </div>
+                
                <div class="input-group form-group">
                   <div class="input-group-label">Expense Receipt : </div>
                     <span ></span> 
-                 <input type="file" class="float-right form-control"  placeholder= "Choose file" name="expReceipt">
+                 <input type="file"   placeholder= "Choose file"  id='expReceipt' name="expReceipt"  >
+             
                    </div>
                 
                 <div class="input-group form-group">
@@ -46,7 +48,7 @@
                   <input type="text"   class="form-control" placeholder= "Enter Amount" required name="expAmount">
                 </div>
                 <div class="float-right form-group">
-                  <input type="submit" value="Create" class="btn  login_btn" name="submit">
+                  <input type="submit" value="Create" class="btn  login_btn" name="submit"  formaction="addNewExpense">
                   <span >   </span>
                    <input class="btn  login_btn" type="reset" value="Reset" >
                 </div>
@@ -58,14 +60,12 @@
       </div>
   
 <script type="text/javascript">
-            $(function () {
- var date = new Date();
- date.setDate(date.getDate());
- 
-                $('#datePicker1').datepicker({
- endDate: date,
-                });
- $('#datePicker1').datepicker("setDate", new Date());
-            });
-        </script>
+$(function() {
+    $( "#datePicker" ).datepicker({   format: 'mm-dd-yyyy',
+        endDate: '+0d',
+        autoclose: true });
+  });
+
+         </script>
+
 

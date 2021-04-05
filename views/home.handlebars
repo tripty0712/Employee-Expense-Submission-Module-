@@ -1,24 +1,28 @@
 
 <!------ Include the above in your HEAD tag ---------->
 <div class="container">
-        <div class="table-wrapper" style="height: 200px;" >
+        <div class="table-wrapper"  >
             <div class="table-title">
                 <div class="row">
-                    <div class="col-sm-9"><h2>Employee Expense <b>Details</b></h2></div>
+                    <div class="col-sm-9"><h3>Employee Expense <b>Details</b></h3></div>
                     <div class="col-sm-3">
-                        <a href="addNewExpense"><button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add New</button></a>
+                        <a href="addNewExpense"><button type="button" class="btn btn-primary "> Add New Expense</button></a>
                     </div>
                 </div>
             </div>
-  <table id="example_table" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%" height="60%">
+            <div class="table-wrapper-scroll-y my-custom-scrollbar">
+
+              <table id="example_table" class="table table-striped table-bordered  " cellspacing="0" >
                  <thead>
-                     <tr>
-                    <th  scope="col">  <input type="checkbox" id="chkSubmit" >  </th>
-                        <th  scope="col">Expense Type</th>
-                        <th>Expense Date</th>
-                        <th  scope="col">Receipt</th>
-                        <th>Amount</th>
-                        <th>Actions</th>
+                     <tr  >
+                    <th class="th-sm" >  <input type="checkbox" id="chkSubmit" >  </th>
+                        <th class="th-sm">Expense Type</th>
+                        <th class="th-sm">Expense Date</th>
+                        <th class="th-sm" >
+                            Receipt
+                            </th>
+                        <th class="th-sm">Amount</th>
+                        <th class="th-sm">Actions</th>
                  </tr>
                 </thead>
                
@@ -30,19 +34,22 @@
                    </td>
                         <td>{{expType}}</td>
                         <td > {{expDate}}</td>
-                        <td >  {{expReceipt}}</td>
+                        <td >  {{#if expReceipt}}
+<a href="/uploads/{{expReceipt}}" target="_blank" ><img src="/imgs/wallpapaper/File-Link-icon.png" alt="Open file" style="height:16px"> </a>
+
+ {{/if}}</td>
                         <td> ${{expAmount}}</td>
                         <td>
-						<a href="editExpense?id={{_id}}" >Edit</a>
+						<a href="editExpense?id={{_id}}" ><button type="button" class="btn btn-primary btn-sm">Edit</button></a>
                             | &nbsp;&nbsp;
-                           <a href="/delete?id={{_id}}", onclick='return confirm("You are going to delete this record. Continue?")')> Delete</a>
+                           <a href="/delete?id={{_id}}", onclick='return confirm("You are going to delete this record. Continue?")')> <button type="button" class="btn btn-primary btn-sm">Delete</button></a>
                           
                         </td>
                     </tr>
                 {{/each}}         
                 </tbody>
             </table>
-        
+        </div>
         </div>
     </div>     
 
