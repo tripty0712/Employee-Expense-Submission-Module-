@@ -3,7 +3,8 @@
 
 
   <div class="container">
-   {{data}}
+
+   {{expData}}
         <div class="d-flex justify-content-center h-100">
         
           <div class="cardInput">
@@ -29,31 +30,34 @@
                   </select>
                
                 </div>
- 
+
                
                 <div class="input-group form-group">
                   <div class="input-group-label">Expense Date : </div>
                     <span ></span> 
-                  <input type="text" class= "form-control" name="expDate" id="datePicker" autocomplete="off" value={{expDate}}  >
+                  <input type="text" class= "form-control" name="expDate" id="datePicker" autocomplete="off" value={{expdata.expDate}}  >
                   
                 </div>
                <div class="input-group form-group">
                   <div class="input-group-label">Expense Receipt : </div>
                     <span ></span> 
-                 <input type="file" class="form-control-file" id="exampleFormControlFile1" name="expReceipt">
+                 <input type="file" class="form-control-file" id="exampleFormControlFile1" name="expReceipt" placeholder="{{expdata.expReceipt}}">
+                 {{#if expdata.expReceipt}} 
+                <a href="/public/uploads/{{expdata.expReceipt}}" target="_blank">{{expdata.expReceipt}} </label>
+                 {{/if}}
                    </div>
                 
                 <div class="input-group form-group">
                   <div class="input-group-label">Expense Amount : </div>
                     <span ></span>
-                  <input type="text"   class="form-control" value="{{expAmount}}"  autocomplete="off" name="expAmount" required=true>
+                  <input type="text"   class="form-control" placeholder= "{{expdata.expAmount}}"  autocomplete="off" name="expAmount" required=true>
                 </div>
                 <div class="float-right form-group">
                   <input type="submit" value="Update" class="btn  login_btn"  >
                   <span >   </span>
                    <input class="btn  login_btn" type="reset" value="Reset" >
                 </div>
-                <input type="hidden" value={{_id}} name="_id" >
+                <input type="hidden" value={{expdata._id}} name="_id" >
                 
                 
               </form>

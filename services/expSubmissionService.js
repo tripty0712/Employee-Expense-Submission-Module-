@@ -1,3 +1,4 @@
+const { response } = require("express");
 const empExpense = require("../models/empExpense.js");
 
 
@@ -35,7 +36,9 @@ async function deleteExpenseRecord(recordId)
 async function fetchExpenseRecord(recordId)
 {
  
- return  await empExpense.findOne({ _id:recordId}).exec();
+   return  await empExpense.findOne({ _id:recordId}).lean().then((result)=>{ console.log (result); });
+   
+
    //const data= await empExpense.find({_id:recordId}).exec();
    
     //return data;

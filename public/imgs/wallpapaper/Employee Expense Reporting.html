@@ -1,0 +1,133 @@
+
+<!-- saved from url=(0062)http://localhost:4500/editExpense?id=ckmph0yiq00002c88gx93b3jq -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="./Employee Expense Reporting_files/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Bootstrap DataTable CSS -->
+    
+	<link rel="stylesheet" href="./Employee Expense Reporting_files/dataTables.bootstrap4.min.css">
+    <!-- jQuery js-->
+    <script src="./Employee Expense Reporting_files/jquery-3.2.1.slim.min.js.download" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <!-- Bootstrap js -->
+	<script src="./Employee Expense Reporting_files/bootstrap.min.js.download" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- jQuery Datatable js -->
+    <script src="./Employee Expense Reporting_files/jquery.dataTables.min.js.download"></script>
+    <!-- Bootstrap Datatable js -->    
+    <script src="./Employee Expense Reporting_files/dataTables.bootstrap4.min.js.download"></script>
+    
+     <link href="./Employee Expense Reporting_files/layout2.css" rel="stylesheet">
+    <title>Employee Expense Reporting</title>
+  </head>
+  <body>
+  <nav class="navbar navbar-expand-md bg-dark navbar-dark sticky-top">
+  <a class="navbar-brand" href="http://localhost:4500/editExpense?id=ckmph0yiq00002c88gx93b3jq#">Mason Vangurad Consulting  </a>
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navb" aria-expanded="true">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+ <div id="navb" class="navbar-collapse collapse hide">
+
+    <ul class="nav justify-content-end ">
+         <li class="nav-item">
+        <a class="nav-link" href="http://localhost:4500/signout"><span class="fas fa-sign-in-alt"></span> Sign Out</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="sidenav">
+  <a href="http://localhost:4500/editExpense?id=ckmph0yiq00002c88gx93b3jq#home?Approved">Approved Expenses </a>
+  <a href="http://localhost:4500/editExpense?id=ckmph0yiq00002c88gx93b3jq#home?Pending">Pending Approval</a>
+  <a href="http://localhost:4500/editExpense?id=ckmph0yiq00002c88gx93b3jq#home?Rejected">Rejected Expenses</a>
+  
+</div>
+ 
+         
+
+      <link href="./Employee Expense Reporting_files/login.css" rel="stylesheet">
+
+
+  <div class="container">
+
+   
+        <div class="d-flex justify-content-center h-100">
+        
+          <div class="cardInput">
+            <div class="card-header">
+              <h3>Modify Expense</h3>
+            
+            </div>
+            <div>   </div>
+            <div class="card-body">
+             <form action="http://localhost:4500/editExpense" method="POST"> 
+
+                <div class="input-group form-group">
+                  <div class="input-group-label">Expense Type : </div>
+                    <span></span> 
+                    <select name="expType" id="expType" class="form-control">
+                        <option value="Select">Select one</option>
+
+                  </select>
+               
+                </div>
+
+               
+                <div class="input-group form-group">
+                  <div class="input-group-label">Expense Date : </div>
+                    <span></span> 
+                  <input type="text" class="form-control" name="expDate" id="datePicker" autocomplete="off" value="Mon" mar="" 01="" 2021="" 00:00:00="" gmt-0700="" (mountain="" standard="" time)="">
+                  
+                </div>
+               <div class="input-group form-group">
+                  <div class="input-group-label">Expense Receipt : </div>
+                    <span></span> 
+                 <input type="file" class="form-control-file" id="exampleFormControlFile1" name="expReceipt" placeholder="expReceipt">
+                   </div>
+                
+                <div class="input-group form-group">
+                  <div class="input-group-label">Expense Amount : </div>
+                    <span></span>
+                  <input type="text" class="form-control" placeholder="77" autocomplete="off" name="expAmount" required="true">
+                </div>
+                <div class="float-right form-group">
+                  <input type="submit" value="Update" class="btn  login_btn">
+                  <span>   </span>
+                   <input class="btn  login_btn" type="reset" value="Reset">
+                </div>
+                <input type="hidden" value="ckmph0yiq00002c88gx93b3jq" name="_id">
+                
+                
+              </form>
+            </div>
+ 
+          </div>
+        </div>
+      </div>
+  
+<script type="text/javascript">
+$(function() {
+    $( "#datePicker" ).datepicker({   format: 'mm-dd-yyyy',
+        endDate: '+0d',
+        autoclose: true });
+  });
+
+  document.getElementById("expType").value = "Misc";
+         </script>
+
+        <footer>
+  <div class="copyright">
+    <p>© 2020 - Mason Vanguard Consulting</p>
+   
+  </div>
+  <div class="social">
+    <a href="mailto:info@mvconsulting.com" class="support"> 
+   Email Us: info@mvconsulting.com 
+     </a>
+  
+    <a href="http://localhost:4500/editExpense?id=ckmph0yiq00002c88gx93b3jq#" class="tweet">t</a>
+    <a href="http://localhost:4500/editExpense?id=ckmph0yiq00002c88gx93b3jq#" class="linked">in</a>
+  </div>
+</footer>
+    
+  
+</body></html>

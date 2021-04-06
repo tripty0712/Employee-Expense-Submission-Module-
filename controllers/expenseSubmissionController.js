@@ -1,4 +1,4 @@
-    
+const empExpense = require("../models/empExpense.js");    
     const {getEmpExpenseList, 
           createExpense,
           deleteExpenseRecord,
@@ -54,11 +54,18 @@ async function processDeleteExpenseForm(req, res) {
 async function fetchEditDataForm(req, res) {
      
   const id = req.query.id;
+
+  return  await empExpense.findOne({ _id:id}).lean().then((result)=>{ console.log (result);res.render('editExpense',{expdata:result}) });
+   
  
-  const  data =await fetchExpenseRecord(id);
-  console.log ("Inside :"+ data);
+   //fetchExpenseRecord(id).then(  (expdata)=> {
+   // console.log ("Inside :"+ expdata);  
+   // console.log(expdata.length);
+   // res.render('editExpense', {bag:expdata, expenseType:expenseType});;
+  //})
  
- res.render("editExpense", {data,expenseType});
+ 
+ 
 }
 
 
