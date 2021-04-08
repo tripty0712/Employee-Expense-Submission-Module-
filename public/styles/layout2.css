@@ -4,5 +4,12 @@
 @import url("sidenav.css");
 @import url(https://fonts.googleapis.com/css?family=Raleway);
 @import url(https://fonts.googleapis.com/css?family=Numans);
-
 @import url("bootstrapTable.css");
+@import url("login.css");
+html,body{
+    background-image: url('/public/imgs/wallpapaper/bg2.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+    font-family: 'Numans', sans-serif;
+    }

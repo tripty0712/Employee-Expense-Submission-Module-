@@ -14,37 +14,43 @@ const app = express();
 app.use(fileUpload());
 
  function renderAddExpense(req, res) {
-          res.render("addNewExpense", {expenseType });
+
+    console.log("in add");
+    let today=new  Date().toISOString().split('T')[0];
+      console.log(today);
+         res.render("addNewExpense",{ expenseType,today });
     }
 
     
-    
+ // To add new expense record   
 async function processAddExpenseForm(req, res)
  {
     
     let sampleFile;
     
   
-    if (!req.files || Object.keys(req.files).length === 0) {
-      return res.status(400).send('No files were uploaded.');
+    if (req.files) {
+    // The name of the input field (i.e. "expReceipt") is used to retrieve the uploaded file
+    sampleFile = req.files.expReceipt;   
+    const msg=  processUploadFileForm(sampleFile,res);
     }
   
-    // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
-    sampleFile = req.files.expReceipt;
-   
-  const msg=  processUploadFileForm(sampleFile,res);
+    //service to call create expense in mongodb
     const addExpense= await createExpense({ ...req.body },req.empId);
     if(addExpense)   
     {  res.redirect('/home'); }
 
  }
+
+
+ //to delete One Expense Record as a time
 async function processDeleteExpenseForm(req, res) {
      
   const id = req.query.id;
+  //to delete mongo db record on basis of id
   const isDeleted= await deleteExpenseRecord(id);
    if(isDeleted)   
   {
-   
      res.redirect('/home'); 
     
  }
@@ -54,28 +60,34 @@ async function processDeleteExpenseForm(req, res) {
 async function fetchEditDataForm(req, res) {
      
   const id = req.query.id;
-
-  return  await empExpense.findOne({ _id:id}).lean().then((result)=>{ console.log (result);res.render('editExpense',{expdata:result}) });
-   
- 
-   //fetchExpenseRecord(id).then(  (expdata)=> {
-   // console.log ("Inside :"+ expdata);  
-   // console.log(expdata.length);
-   // res.render('editExpense', {bag:expdata, expenseType:expenseType});;
-  //})
- 
- 
- 
+  //To set date as less then today date 
+  let today=new  Date().toISOString().split('T')[0];
+   //to modify existing expense record 
+  await fetchExpenseRecord(id).then(  (result)=> {
+    const expdata={...result  ,expDate: result.expDate.toISOString().split('T')[0]  };
+      res.render('editExpense',{expdata,expenseType,today})
+  });
+  
 }
 
 
 
 async function updateEditDataForm(req, res) {
-  const recordId = req.query.id
-  const status= await updateExpenseRecord( {...req.body},recordId,req.empId );
- console.log(status);
-  if(status)
-   res.redirect('/home');   
+
+  let sampleFile;
+      
+  if (req.files ) {
+  
+     // The name of the input field (i.e. "expReceipt") is used to retrieve the uploaded file
+      sampleFile = req.files.expReceipt;
+      const msg=  processUploadFileForm(sampleFile,res);
+    }
+
+      console.log(req.body._id);
+      const status= await updateExpenseRecord( {...req.body},req.empId );
+      console.log(status);
+      if(status)
+      res.redirect('/home');   
 
 }
 
@@ -83,7 +95,10 @@ async function updateEditDataForm(req, res) {
 async function renderHomeGrid(req, res) {
 
     const empExpenseList = await getEmpExpenseList(req.empId);
-     res.render("home",{empExpenseList,
+
+    const expenseList = empExpenseList.map(expense => {return {...expense, expDate: expense.expDate.toISOString().split('T')[0]}})
+
+     res.render("home",{empExpenseList:expenseList,
             });
   }
 

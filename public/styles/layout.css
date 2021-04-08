@@ -1,8 +1,9 @@
-@import url("login.css");
+
 @import url("footer.css");
 @import url("header.css");
 @import url(https://fonts.googleapis.com/css?family=Raleway);
 @import url(https://fonts.googleapis.com/css?family=Numans);
+
 
 html,body{
     background-image: url('/imgs/wallpapaper/loginBackground.jpg');
