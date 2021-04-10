@@ -13,7 +13,7 @@ const {
  processDeleteExpenseForm,
  fetchEditDataForm,
  updateEditDataForm,
-
+ processExpenseApprovalForm,
   } = require("./controllers/expenseSubmissionController.js");
  
 const {
@@ -73,7 +73,7 @@ app.post("/addNewExpense",processAddExpenseForm);
 app.get("/editExpense",fetchEditDataForm);
 app.post("/editExpense",updateEditDataForm);
 app.get('/delete', processDeleteExpenseForm );
-
+app.post('/submitExpenses', processExpenseApprovalForm );
 
 
 

@@ -2,7 +2,7 @@
   <div class="container">
    
         <div class="d-flex justify-content-center h-100">
-        
+         <div class="form-group">
           <div class="cardInput">
             <div class="card-header">
               <h3>Add New Expense</h3>
@@ -13,11 +13,9 @@
   {{/if}}</div>
             <div class="card-body">
              <form  method="POST" enctype="multipart/form-data">
- 
-                
-                <div class="input-group form-group">
+                <div class="input-group">
                   <div class="input-group-label">Expense Type : </div>
-                    <span ></span> 
+                 
                     <select name="expType" id="expType" class="form-control" required="true" >
                         <option value="Select">Select one</option>
                           {{#each expenseType}}
@@ -25,7 +23,7 @@
                               {{/each}}
                   </select>
                 </div>
-               <div class="input-group form-group">
+               <div class="input-group ">
                   <div class="input-group-label ">Expense Date : </div>
                     <span ></span> 
                   <input type="date" class= "form-control" name="expDate" id="datePicker" autocomplete="off" max={{today}}  >
@@ -51,7 +49,7 @@
                 </div>
               </form>
             </div>
- 
+          </div>
           </div>
         </div>
       </div>

@@ -3,7 +3,7 @@
 @import url("header.css");
 @import url(https://fonts.googleapis.com/css?family=Raleway);
 @import url(https://fonts.googleapis.com/css?family=Numans);
-
+@import url("login.css");
 
 html,body{
     background-image: url('/imgs/wallpapaper/loginBackground.jpg');

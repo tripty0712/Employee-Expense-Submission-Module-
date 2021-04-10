@@ -102,6 +102,19 @@ async function renderHomeGrid(req, res) {
             });
   }
 
+  async function processExpenseApprovalForm(req,res)
+  {
+    
+   
+    const fields = {...req.body};
+    console.log('in approval',fields);
+    
+   
+      
+    
+
+  }
+
 
 function processUploadFileForm(sampleFile,res)
 {
@@ -127,4 +140,5 @@ function processUploadFileForm(sampleFile,res)
      updateEditDataForm,
      renderHomeGrid,
      processUploadFileForm,
+     processExpenseApprovalForm,
    };

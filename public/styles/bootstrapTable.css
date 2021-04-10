@@ -1,0 +1,35 @@
+
+.row-detail{
+
+    background-color:#57334b;
+     color:floralwhite;
+     font-family: 'Glyphicons Halflings';
+     font-size: 1em;;
+
+}
+
+.header-row
+{
+    background-color:#3f2503;
+    color:floralwhite;
+    font-family: 'Glyphicons Halflings';
+    font-size: 1.1em;;
+
+}
+
+.grid-button
+{
+background-color: black;
+color:white;
+margin-top: 40px;
+
+
+
+}
+
+a,
+a:hover,
+a:focus {
+  text-decoration: none;
+  transition: all 0.3s;
+}
