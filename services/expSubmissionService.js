@@ -1,5 +1,5 @@
-const { response } = require("express");
 const empExpense = require("../models/empExpense.js");
+
 
 
 async function createExpense(fields,employeeId)
@@ -15,10 +15,10 @@ async function createExpense(fields,employeeId)
 
 }
 
-async function getEmpExpenseList(empId)
+async function getEmpExpenseList(empId,status)
 {
  
-   return await empExpense.find({empId}).lean().exec();
+   return await empExpense.find({empId,expStatus:status}).lean().exec();
     
 
 }
@@ -47,11 +47,19 @@ async function fetchExpenseRecord(recordId)
 async function updateExpenseRecord(fields,employeeId)
 {
    
-  const recordId=fields._id;
-   console.log(recordId);
-   console.log(fields);
+  return await empExpense.updateOne({_id:recordId,empId:employeeId},fields).exec();
+
+}
+
+
+async function submitApprovalExpense(idArray,mngrId)
+{
+
+    
  
-return await empExpense.updateOne({_id:recordId,empId:employeeId},fields).exec();
+    return await empExpense.updateMany({_id:{ $in: idArray }},{$set:{expStatus:'Pending',managerId:mngrId }}).exec();
+      
+     
 
 }
 
@@ -92,6 +100,7 @@ module.exports={
     deleteExpenseRecord,
     updateExpenseRecord,
     fetchExpenseRecord,
+    submitApprovalExpense,
 };
 
 

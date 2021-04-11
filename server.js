@@ -73,7 +73,7 @@ app.post("/addNewExpense",processAddExpenseForm);
 app.get("/editExpense",fetchEditDataForm);
 app.post("/editExpense",updateEditDataForm);
 app.get('/delete', processDeleteExpenseForm );
-app.post('/submitExpenses', processExpenseApprovalForm );
+app.post('/home', processExpenseApprovalForm );
 
 
 

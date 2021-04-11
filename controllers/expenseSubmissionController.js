@@ -1,13 +1,19 @@
-const empExpense = require("../models/empExpense.js");    
-    const {getEmpExpenseList, 
+  
+const {getEmpExpenseList, 
           createExpense,
           deleteExpenseRecord,
           updateExpenseRecord,
-          fetchExpenseRecord,}=require("../services/expSubmissionService.js")
+          fetchExpenseRecord,
+          submitApprovalExpense,}=require("../services/expSubmissionService.js")
 const expenseType = require("../data/expenseType.js");
+const{
+  getEmployeeRecord,
+
+}= require("../services/employeeService.js")
 
 const express = require('express');
 const fileUpload = require('express-fileupload');
+
 const app = express();
 
 // default options
@@ -93,24 +99,36 @@ async function updateEditDataForm(req, res) {
 
     
 async function renderHomeGrid(req, res) {
+ 
+     const status=req.query.status;
+     let  empExpenseList;
+if(status){
+     empExpenseList = await getEmpExpenseList(req.empId,status);}
+else
+empExpenseList = await getEmpExpenseList(req.empId,status);
+   
 
-    const empExpenseList = await getEmpExpenseList(req.empId);
+const expenseList = empExpenseList.map(expense => {return {...expense, expDate: expense.expDate.toISOString().split('T')[0]}})
 
-    const expenseList = empExpenseList.map(expense => {return {...expense, expDate: expense.expDate.toISOString().split('T')[0]}})
-
-     res.render("home",{empExpenseList:expenseList,
+    
+    res.render("home",{empExpenseList:expenseList,
             });
   }
 
   async function processExpenseApprovalForm(req,res)
   {
-    
+    const employeeId=req.empId;
+    const idArray= (req.query.arrItem).split(',');
+
+    const empData= await getEmployeeRecord(employeeId);
+
+    const mngr=empData.managerId;
+
+     console.log(mngr);
    
-    const fields = {...req.body};
-    console.log('in approval',fields);
-    
-   
-      
+    console.log(idArray);
+
+    const IsUpdated=await submitApprovalExpense(idArray,mngr);
     
 
   }
