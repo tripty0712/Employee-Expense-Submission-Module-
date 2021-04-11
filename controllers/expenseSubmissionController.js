@@ -93,26 +93,38 @@ async function updateEditDataForm(req, res) {
       const status= await updateExpenseRecord( {...req.body},req.empId );
       console.log(status);
       if(status)
-      res.redirect('/home');   
+      res.redirect('/home');    
 
 }
 
     
 async function renderHomeGrid(req, res) {
  
+  //get the status from querystring
      const status=req.query.status;
+
      let  empExpenseList;
+     
 if(status){
      empExpenseList = await getEmpExpenseList(req.empId,status);}
 else
+{
 empExpenseList = await getEmpExpenseList(req.empId,status);
-   
+
+}
+
+
+//to fetch the name of employee
+const empData= await getEmployeeRecord(req.empId);
+
+const employeeName=empData.firstName +" "+empData.lastName;
 
 const expenseList = empExpenseList.map(expense => {return {...expense, expDate: expense.expDate.toISOString().split('T')[0]}})
+if(status==='Approved')
+{   res.render("approvedExpenses",{empExpenseList:expenseList,employeeName,  });}
+ else
+ {res.render("home",{empExpenseList:expenseList,status,employeeName, });}
 
-    
-    res.render("home",{empExpenseList:expenseList,
-            });
   }
 
   async function processExpenseApprovalForm(req,res)
@@ -129,6 +141,8 @@ const expenseList = empExpenseList.map(expense => {return {...expense, expDate: 
     console.log(idArray);
 
     const IsUpdated=await submitApprovalExpense(idArray,mngr);
+
+    res.redirect('/home'); 
     
 
   }

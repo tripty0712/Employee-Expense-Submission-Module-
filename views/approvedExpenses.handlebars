@@ -1,0 +1,53 @@
+
+
+<div class="container">
+	<div >
+     
+     
+          <span></span>
+          <div >
+              <h4><b>Approved Expenses Report for {{employeeName}}  </b></h4>
+          </div>
+      
+	  <div class="col-md-12">
+       
+               <div class="table-responsive ">
+            <table id="example" class="table table-bordered" style="width:100%">
+                  <thead><tr class="header-row" >
+                          <th>Expense Type</th>
+                        <th>Expense Date</th>
+                         <th>Receipt</th>
+                        <th>Amount</th>
+                       </tr>
+                    </thead>
+                    <tbody >
+                        {{#each empExpenseList}}
+                        <tr class="row-detail" itemid="_id" >
+                             <td>{{expType}}</td>
+                            <td > {{expDate}}</td>
+                            <td > 
+                             {{#if expReceipt}}
+                                 <a href="/uploads/{{expReceipt}}" target="_blank" ><p data-placement="top" data-toggle="tooltip" title="{{expReceipt}}"><button class="btn btn-primary btn-xs" data-title="File" data-toggle="modal"  ><span class="glyphicon glyphicon-file"></span></button></p></a>
+                            {{/if}}</td>
+                            <td> ${{expAmount}}</td>
+                               
+                       </tr>
+                    {{/each}}         
+                    </tbody>
+            </table>
+            </div>
+            
+            </div>
+        </div>
+</div>
+
+    <script>
+     $(document).ready(function(){
+   $('#example').DataTable({ 
+             "aaSorting": [],
+              columnDefs:
+              [{  orderable: false,  targets: 2}],
+        });
+  
+    });
+         </script>

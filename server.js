@@ -67,7 +67,7 @@ app.use(authenticateUser);
 app.get("/signout", renderSignout);
 
 app.get("/home", renderHomeGrid);
-
+app.get("/approvedExpenses", renderHomeGrid);
 app.get("/addNewExpense",renderAddExpense);
 app.post("/addNewExpense",processAddExpenseForm);
 app.get("/editExpense",fetchEditDataForm);

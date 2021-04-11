@@ -54,12 +54,7 @@ async function updateExpenseRecord(fields,employeeId)
 
 async function submitApprovalExpense(idArray,mngrId)
 {
-
-    
- 
-    return await empExpense.updateMany({_id:{ $in: idArray }},{$set:{expStatus:'Pending',managerId:mngrId }}).exec();
-      
-     
+   return await empExpense.updateMany({_id:{ $in: idArray }},{$set:{expStatus:'Pending',managerId:mngrId }}).exec();
 
 }
 
