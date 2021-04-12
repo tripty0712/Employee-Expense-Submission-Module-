@@ -7,24 +7,19 @@ const {getEmpExpenseList,
           submitApprovalExpense,
           getManagerList,
           approvedExpenses,
-          rejectedExpenses,        
+          rejectedExpenses, 
+
         }=require("../services/expSubmissionService.js")
 
 const expenseType = require("../data/expenseType.js");
 const{
-  getEmployeeName,empIsManager
+  getEmployeeName,empIsManager,getEmployeeRecord
 
 }= require("../services/employeeService.js")
-const express = require('express');
-const fileUpload = require('express-fileupload');
-const app = express();
-
-// default options
-app.use(fileUpload());
 
 
 //Render to main grid after login 
-async function renderHomeGrid(req, res,next) {
+async function renderHomeGrid(req, res) {
  
 
   //get the status from querystring
@@ -55,10 +50,10 @@ async function renderHomeGrid(req, res,next) {
   }
   catch{
 
-    next(error);
+   //to do render error page
   }
 }
-function renderAddExpense(req, res,next) {
+function renderAddExpense(req, res) {
 
     try {
      
@@ -68,38 +63,37 @@ function renderAddExpense(req, res,next) {
       
     }
     catch (error) {
-      next(error);
+    
       } 
 
     }
 
     
  // To add new expense record   
-async function processAddExpenseForm(req, res,next)
- {
-    
-    let sampleFile;
-     try{
+async function processAddExpenseForm(req, res) {
+
+  console.log('file name:',req.files);
+  let sampleFile;
+  try {
     if (req.files) {
-    // The name of the input field (i.e. "expReceipt") is used to retrieve the uploaded file
-    sampleFile = req.files.expReceipt; 
-    console.log('input file',sampleFile)  ;
-    const msg=  processUploadFileForm(sampleFile,res);
+      // The name of the input field (i.e. "expReceipt") is used to retrieve the uploaded file
+      sampleFile = req.files.expReceipt;
+      console.log('>>>>>>>>>>>>>>>>>input file::::: ', sampleFile);
+      processUploadFileForm(sampleFile, res);
     }
-  
+
     //service to call create expense in mongodb
-    const addExpense= await createExpense({ ...req.body },req.empId);
-    if(addExpense)   
-    {  res.redirect('/home'); }
+    const addExpense = await createExpense({ ...req.body ,expReceipt:sampleFile.name} ,req.empId);
+    if (addExpense) { res.redirect('/home'); }
   }
   catch (error) {
-    next(error);
-    }
- }
-
+  //to do error page
+  console.log('process add expense form error',error);
+  }
+}
 
  //to delete One Expense Record as a time
-async function processDeleteExpenseForm(req, res,next) {
+async function processDeleteExpenseForm(req, res) {
      
   const id = req.query.id;
   try{
@@ -112,11 +106,11 @@ async function processDeleteExpenseForm(req, res,next) {
  }
 }
 catch (error) {
-  next(error);
+ 
   }
 }
 
-async function fetchEditDataForm(req, res,next) {
+async function fetchEditDataForm(req, res) {
      
   const id = req.query.id;
   //To set date as less then today date 
@@ -128,32 +122,31 @@ async function fetchEditDataForm(req, res,next) {
           res.render('editExpense',{expdata,expenseType,today})});
      }
   catch (error) {
-  next(error);
+ 
     }
 }
 
-async function updateEditDataForm(req, res,next) 
+async function updateEditDataForm(req, res) 
 {
 
   let sampleFile;
   try{    
-       if (req.files ) {
-  
-        // The name of the input field (i.e. "expReceipt") is used to retrieve the uploaded file
-          sampleFile = req.files.expReceipt;
-          const msg=  processUploadFileForm(sampleFile);
-          console.log('in file upload', sampleFile);
-      } 
-
+    if (req.files) {
+      // The name of the input field (i.e. "expReceipt") is used to retrieve the uploaded file
+      sampleFile = req.files.expReceipt;
+      console.log('>>>>>>>>>>>>>>>>>input file::::: ', sampleFile);
+      processUploadFileForm(sampleFile, res);
+    }
+   
       console.log({...req.body});
 
-      const status= await updateExpenseRecord( {...req.body},req.empId );
+      const status= await updateExpenseRecord( {...req.body,expReceipt:sampleFile.name},req.empId );
       console.log(status);
       if(status)
       res.redirect('/home');
   } 
       catch (error) {
-        next(error);
+       
           }   
 
 }
@@ -177,7 +170,8 @@ async function updateEditDataForm(req, res,next)
     res.redirect('/home'); 
      }
      catch (error) {
-  next(error);
+     console.log('In approval Form', error)  
+  //to do error page
     }
 
   }
@@ -236,28 +230,20 @@ async function processExpensesRecords (req,res)
   let isManager=true;
   res.redirect('/manager-home');
 
-
-
 }
 
+function processUploadFileForm(sampleFile, res) {
+  console.log('In upload');
 
-  
-function processUploadFileForm(sampleFile,res)
-{
-    console.log('In upload');
-  
-    const uploadPath =  '/public/uploads/' + sampleFile.name;
-     
-    console.log(sampleFile);
-    console.log(uploadPath);
+  const uploadPath = './public/uploads/' + sampleFile.name;
 
-    sampleFile.mv(uploadPath, function(err) {
-      
+  console.log(sampleFile);
+  console.log(uploadPath);
+
+  sampleFile.mv(uploadPath, function (err) {
+    console.log('In upload file form err', err);
     return 'File uploaded!';
-    });
-
-
-
+  });
 }
 
   module.exports = {

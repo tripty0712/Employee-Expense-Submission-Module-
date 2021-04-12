@@ -44,6 +44,8 @@ async function registerEmployee(fields) {
       }
     console.log(foundUser.empId);
       return auth.sign(foundUser.empId);
+
+      
     }
     
 

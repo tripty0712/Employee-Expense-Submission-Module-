@@ -49,10 +49,7 @@ app.use(cookieParser());
 
 
 // enable files upload
-app.use(fileUpload({
-  useTempFiles : true,
-  tempFileDir : '/tmp/'
-}));
+app.use(fileUpload());
 
 // routing
 
@@ -63,8 +60,6 @@ app.get("/login", renderLoginForm);
 app.post("/login", processLoginSubmission);
 
 app.use(authenticateUser);
-// enable files upload
-app.use(fileUpload());
 app.get("/signout", renderSignout);
 
 app.get("/home", renderHomeGrid);

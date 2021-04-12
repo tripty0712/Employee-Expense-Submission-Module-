@@ -38,7 +38,7 @@
   <div class="form-group">
         <label class="col-sm-3 control-label" for="Expense-Receipt">Expense Receipt </label>
         <div class="col-sm-7">
-            <input type="file" class="form-control" id="expReceipt" name="expReceipt" value="{{expdata.expReceipt}}">
+            <input type="file" class="form-control-file" id="expReceipt" name="expReceipt" value="{{expdata.expReceipt}}">
                  {{#if expdata.expReceipt}} 
                 <a href="/public/uploads/{{expdata.expReceipt}}" target="_blank"><span class="alert alert-info">{{expdata.expReceipt}}</span> </a>
                  {{/if}}

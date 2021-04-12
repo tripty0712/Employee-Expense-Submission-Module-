@@ -1,3 +1,4 @@
+const { response } = require("express");
 const { registerEmployee,loginUser,} = require("../services/empAuthService.js");
 
 const { empIsManager,} = require("../services/employeeService.js");
@@ -44,8 +45,10 @@ else if(token === 'NOT_VALID_EMP')
 
     
       message = "You have successfully logged in";
+      
       const isManager=await empIsManager(req.empId);
       
+      console.log(isManager);
      if(isManager)
      {
      
