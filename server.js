@@ -4,8 +4,6 @@ const expressHandlebars = require("express-handlebars");
 const cookieParser = require("cookie-parser");
 const { authenticateUser } = require("./middleware/authentication.js");
 const fileUpload = require('express-fileupload');
-const session = require('express-session');
-
 
 const {
   renderHomeGrid ,
@@ -41,22 +39,20 @@ app.engine(
 
 app.set("view engine", "handlebars");
 
+
+
 // middleware
 app.use(express.static(__dirname + "/public"));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cookieParser());
+
+
 // enable files upload
 app.use(fileUpload({
   useTempFiles : true,
   tempFileDir : '/tmp/'
 }));
-
-app.use(session({secret: 'ssshhhhh',saveUninitialized: true,resave: true}));
-
-
-
-
 
 // routing
 
@@ -67,7 +63,8 @@ app.get("/login", renderLoginForm);
 app.post("/login", processLoginSubmission);
 
 app.use(authenticateUser);
-
+// enable files upload
+app.use(fileUpload());
 app.get("/signout", renderSignout);
 
 app.get("/home", renderHomeGrid);

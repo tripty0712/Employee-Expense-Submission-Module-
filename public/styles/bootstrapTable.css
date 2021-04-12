@@ -27,7 +27,7 @@ margin-top: 40px;
 
 }
 
-button:hover{background-color:goldenrod;}
+button:hover{background-color:rgb(243, 241, 243);}
 
-button:focus{background-color:goldenrod;}
+button:focus{background-color:rgb(243, 241, 243);}
 

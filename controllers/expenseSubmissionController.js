@@ -15,6 +15,12 @@ const{
   getEmployeeName,empIsManager
 
 }= require("../services/employeeService.js")
+const express = require('express');
+const fileUpload = require('express-fileupload');
+const app = express();
+
+// default options
+app.use(fileUpload());
 
 
 //Render to main grid after login 
@@ -25,14 +31,14 @@ async function renderHomeGrid(req, res,next) {
      const status=req.query.status;
 
      let  empExpenseList;
-     console.log(status);
+     
      try{
       if(status)
        {empExpenseList = await getEmpExpenseList(req.empId,status);}
       else
       
       {empExpenseList = await getEmpExpenseList(req.empId,status);}
-        console.log(empExpenseList);
+    
       //to fetch the name of employee
       const employeeName=await getEmployeeName(req.empId);
 
@@ -41,10 +47,10 @@ async function renderHomeGrid(req, res,next) {
 
       const expenseList = empExpenseList.map(expense => {return {...expense, expDate: expense.expDate.toISOString().split('T')[0]}})
       if(status==='Approved')
-      { console.log('in approved');
+      { 
           res.render("approvedExpenses",{empExpenseList:expenseList,employeeName,isManager  });}
         else
-        { console.log('in home grid');
+        { 
           res.render("home",{empExpenseList:expenseList,status,employeeName,isManager });}
   }
   catch{
@@ -55,8 +61,8 @@ async function renderHomeGrid(req, res,next) {
 function renderAddExpense(req, res,next) {
 
     try {
-      
-      let today=new  Date().toISOString().split('T')[0];
+     
+      let today= new  Date().toISOString().split('T')[0];
       console.log(today);
       res.render("addNewExpense",{ expenseType,today });
       
@@ -135,11 +141,12 @@ async function updateEditDataForm(req, res,next)
   
         // The name of the input field (i.e. "expReceipt") is used to retrieve the uploaded file
           sampleFile = req.files.expReceipt;
-          const msg=  processUploadFileForm(sampleFile,res);
-          console.log('in file upload');
+          const msg=  processUploadFileForm(sampleFile);
+          console.log('in file upload', sampleFile);
       } 
 
-      console.log(req.body.expReceipt);
+      console.log({...req.body});
+
       const status= await updateExpenseRecord( {...req.body},req.empId );
       console.log(status);
       if(status)
@@ -239,7 +246,7 @@ function processUploadFileForm(sampleFile,res)
 {
     console.log('In upload');
   
-    const uploadPath =  './uploads/' + sampleFile.name;
+    const uploadPath =  '/public/uploads/' + sampleFile.name;
      
     console.log(sampleFile);
     console.log(uploadPath);
