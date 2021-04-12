@@ -32,7 +32,7 @@
       <p Style="text-decoration:underline; ">Expense Submission Module</p>
      
       <li>
-        <a href="/ApprovedExpenses">Approved Expenses</a>
+        <a href="/ApprovedExpenses?status=Approved">Approved Expenses</a>
      </li>
       <li>
         <a href="/home?status=Rejected">Rejected Expenses</a>
@@ -45,6 +45,22 @@
         <a href="/home">Saved Expenses</a>
       </li>
     </ul>
+
+{{#if isManager}}
+<ul class="list-unstyled components">
+      <p Style="text-decoration:underline; ">Manager Approval Module</p>
+     
+      <li>
+        <a href="/manager-home/status=Approved">Approved List</a>
+     </li>
+      <li>
+        <a href="/manager-home?status=Rejected">Rejected List</a>
+      </li>
+      <li>
+        <a href="/manager-home?status=Pending">Pending Request</a>
+       </li>
+       </ul>
+{{/if}}
 
     <ul class="list-unstyled CTAs">
       <li><a class="nav-link" href="/signout"><span class="fas fa-sign-in-alt"></span> Sign Out</a>

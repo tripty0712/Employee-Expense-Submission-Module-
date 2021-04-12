@@ -2,6 +2,25 @@ const empExpense = require("../models/empExpense.js");
 
 
 
+
+
+async function getEmpExpenseList(empId,status)
+{
+ if(!status)
+ {status="Saved";}
+   return await empExpense.find({empId,expStatus:status}).lean().exec();
+    
+
+}
+
+
+async function getManagerList(empId,status)
+{
+ 
+   return await empExpense.find({managerId:empId,expStatus:status}).lean().exec();
+    
+
+}
 async function createExpense(fields,employeeId)
 {
    console.log('in create');
@@ -9,21 +28,11 @@ async function createExpense(fields,employeeId)
    let date = getDateTime();
     //let expDate=getDate(fields.getDate);
     return new empExpense({
-        ...fields,empId:employeeId,createdDate: date
+        ...fields,empId:employeeId,createdDate: date,expStatus:'Saved'
         
         }).save();
 
 }
-
-async function getEmpExpenseList(empId,status)
-{
- 
-   return await empExpense.find({empId,expStatus:status}).lean().exec();
-    
-
-}
-
-
 async function deleteExpenseRecord(recordId)
 {
  
@@ -47,7 +56,11 @@ async function fetchExpenseRecord(recordId)
 async function updateExpenseRecord(fields,employeeId)
 {
    
-  return await empExpense.updateOne({_id:recordId,empId:employeeId},fields).exec();
+   const recordId=fields._id;
+   console.log(fields.expStatus);
+  return await empExpense.updateOne({_id:recordId,empId:employeeId},
+   {$set: {expType:fields.expType,expDate:fields.expDate,
+      expReceipt:fields.expReceipt,expAmount:fields.expAmount,expStatus:'Saved' }}).exec();
 
 }
 
@@ -58,6 +71,17 @@ async function submitApprovalExpense(idArray,mngrId)
 
 }
 
+async function approvedExpenses(idArray)
+{
+   return await empExpense.updateMany({_id:{ $in: idArray }},{$set:{expStatus:'Approved' }}).exec();
+
+}
+
+async function rejectedExpenses(idArray)
+{
+   return await empExpense.updateMany({_id:{ $in: idArray }},{$set:{expStatus:'Rejected' }}).exec();
+
+}
 
 function getDateTime()
 {
@@ -96,6 +120,9 @@ module.exports={
     updateExpenseRecord,
     fetchExpenseRecord,
     submitApprovalExpense,
+    getManagerList,
+    rejectedExpenses,
+    approvedExpenses,
 };
 
 

@@ -27,3 +27,7 @@ margin-top: 40px;
 
 }
 
+button:hover{background-color:goldenrod;}
+
+button:focus{background-color:goldenrod;}
+

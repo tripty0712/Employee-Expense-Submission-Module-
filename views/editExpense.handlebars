@@ -1,67 +1,78 @@
-  <div class="container">
-
-         <div class="justify-content-center h-100">
-        
+    
+ <div class="container">
+        <div style="align-items: center;">
           <div class="cardInput">
-            <div class="card-header">
+              
+  <form class="form-horizontal"   method="POST" enctype="multipart/form-data" >
+ <fieldset>
+  <span></span>
+   
+     <div class="card-header-input">
               <h3>Modify Expense</h3>
-            
-            </div>
-            <div>   {{#if message}}
-    <p class="alert alert-warning">{{message}}</p>
-  {{/if}}</div>
-            <div class="card-body">
-             <form action="editExpense" method="POST" > 
-
-                <div class="input-group form-group">
-                  <div class="input-group-label">Expense Type : </div>
-                    <span ></span> 
-                    <select name="expType" id="expType" class="form-control"  >
+      </div>
+       <div>   {{#if message}}
+             <p class="alert alert-warning">{{message}}</p>
+            {{/if}}
+        </div>
+       <div class="form-group">
+        <label class="col-sm-3 control-label" for="expense-type">Expense Type</label>
+        <div class="col-sm-7">
+              <select name="expType" id="expType" class="form-control" required="true" >
                         <option value="Select">Select one</option>
                           {{#each expenseType}}
-                            <option value={{this}} >{{this}}</option>
-                          {{/each}}
-                  </select>
-                </div>
-
-               
-                <div class="input-group form-group">
-                  <div class="input-group-label">Expense Date : </div>
-                    <span ></span> 
-                  <input type="date" class= "form-control" name="expDate" id="datePicker" autocomplete="off" value={{expdata.expDate}} max={{today}} >
-                  
-                </div>
-               <div class="input-group form-group">
-                  <div class="input-group-label">Expense Receipt : </div>
-                    <span ></span> 
-                 <input type="file" class="form-control-file" id="exampleFormControlFile1" name="expReceipt" value="{{expdata.expReceipt}}">
+                            <option value={{this}}>{{this}}</option>
+                         {{/each}}
+                 </select> 
+         </div>
+      </div>
+        
+        
+  <div class="form-group">
+        <label class="col-sm-3 control-label" for="Expense-Date">Expense Date</label>
+        <div class="col-sm-7">
+         <input type="date" class= "form-control" name="expDate" id="datePicker" autocomplete="off" value={{expdata.expDate}} max={{today}}  >
+        </div>
+  </div>
+      
+  <div class="form-group">
+        <label class="col-sm-3 control-label" for="Expense-Receipt">Expense Receipt </label>
+        <div class="col-sm-7">
+            <input type="file" class="form-control-file" id="exampleFormControlFile1" name="expReceipt" value="{{expdata.expReceipt}}">
                  {{#if expdata.expReceipt}} 
-                <a href="/public/uploads/{{expdata.expReceipt}}" target="_blank">{{expdata.expReceipt}} </label>
+                <a href="/public/uploads/{{expdata.expReceipt}}" target="_blank">{{expdata.expReceipt}} </a>
                  {{/if}}
-                   </div>
-                
-                <div class="input-group form-group">
-                  <div class="input-group-label">Expense Amount : </div>
-                    <span ></span>
-                  <input type="text"   class="form-control" value= "{{expdata.expAmount}}"  autocomplete="off" name="expAmount" required=true>
-                </div>
-                <div class="float-right form-group">
-                  <input type="submit" value="Update" class="btn  login_btn"  >
+       </div>
+  </div>
+     
+     <div class="form-group">
+        <label class="col-sm-3 control-label" for="Expense-Amount">Expense Amount </label>
+        <div class="col-sm-7">
+           <input type="text"   class="form-control"  value= "{{expdata.expAmount}}"  autocomplete="off" name="expAmount" required="true">
+      </div>
+     </div> 
+      <div class="form-group">
+        <div class="col-sm-offset-3 col-sm-7">
+                  <input type="submit" value="Create" class="btn  login_btn" name="submit"  formaction="addNewExpense">
                   <span >   </span>
                    <input class="btn  login_btn" type="reset" value="Reset" >
                 </div>
-                <input type="hidden" value={{expdata._id}} name="_id" >
-               
-              </form>
+               </div>
             </div>
- 
-          </div>
+   <input type="hidden" value={{expdata._id}} name="_id" >
+                 <input type="hidden" value="" name="expStatus">
+   </div></fieldset>
+    </form>
         </div>
       </div>
+      </div>
+  
+
+
+
   
 <script type="text/javascript">
 $(function() {
     console.log={{expdata.expType}};
-  document.getElementById("expType").selec = {{expdata.expType}};
+  document.getElementById("expType").selected = {{expdata.expType}};
          </script>
 

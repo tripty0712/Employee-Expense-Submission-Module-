@@ -14,6 +14,8 @@ const {
  fetchEditDataForm,
  updateEditDataForm,
  processExpenseApprovalForm,
+ renderManagerGrid,
+ processExpensesRecords,
   } = require("./controllers/expenseSubmissionController.js");
  
 const {
@@ -74,9 +76,8 @@ app.get("/editExpense",fetchEditDataForm);
 app.post("/editExpense",updateEditDataForm);
 app.get('/delete', processDeleteExpenseForm );
 app.post('/home', processExpenseApprovalForm );
-
-
-
+app.get("/manager-home", renderManagerGrid);
+app.post('/actionApproval', processExpensesRecords);
 
 
 
