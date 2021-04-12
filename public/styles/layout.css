@@ -1,15 +1,14 @@
-
 @import url("footer.css");
 @import url("header.css");
 @import url(https://fonts.googleapis.com/css?family=Raleway);
 @import url(https://fonts.googleapis.com/css?family=Numans);
 @import url("login.css");
 
-html,body{
-    background-image: url('/imgs/wallpapaper/loginBackground.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    height: 100%;
-    font-family: 'Numans', sans-serif;
-    }
-    
+html,
+body {
+  background-image: url("/imgs/wallpapaper/loginBackground.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100%;
+  font-family: "Numans", sans-serif;
+}

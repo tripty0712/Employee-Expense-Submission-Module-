@@ -1,5 +1,3 @@
-
-  
 /* Colors */
 * {
   margin: 0;
@@ -9,13 +7,12 @@
   box-sizing: border-box;
 }
 
-
 footer {
   width: 100%;
   display: inline-block;
   margin: 0 0;
   height: 70px;
-  background-color:#343a40;
+  background-color: #343a40;
   left: 0;
   bottom: 0;
   position: fixed;
@@ -73,19 +70,19 @@ footer .social a:hover {
 }
 
 .linked {
-  background-color: #1E83AE;
+  background-color: #1e83ae;
   font-size: 1.2em;
   width: 25%;
 }
 
 .face {
-  background-color: #3D5B94;
+  background-color: #3d5b94;
   font-size: 1.2em;
   width: 20%;
 }
 
 .tweet {
-  background-color: #3DACDD;
+  background-color: #3dacdd;
   font-size: 1.2em;
   width: 25%;
 }

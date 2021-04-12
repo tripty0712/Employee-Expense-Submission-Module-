@@ -1,169 +1,114 @@
 [
-    {
-
-      "empId": 75206,
-      "firstName": "Harry",
-      "lastName" : "Dash",
-       "email" : "harry.d@mv.com",
-       "managerId":75001
-     
-    },
-    {
-
-        "empId": "75207",
-        "firstName": "Sam",
-        "lastName" : "Josh",
-         "email" : "sam.d@mv.com",
-         "managerId":"75001"        
-        
-
-    },
-    {
-
-        "empId": "75208",
-        "firstName": "Marry",
-        "lastName" : "Gomes",
-         "email" : "marry.g@mv.com",
-         "managerId":"75001"        
-        
-
-    },
-    {
-
-        "empId": "75209",
-        "firstName": "Peter",
-        "lastName" : "Disuja",
-         "email" : "peter.d@mv.com",
-         "managerId":"75001"        
-        
-
-    },
-    {
-
-        "empId": "75210",
-        "firstName": "Richa",
-        "lastName" : "Jain",
-         "email" : "richa.j@mv.com",
-         "managerId":"75002"        
-        
-
-    },
-    {
-
-        "empId": "75211",
-        "firstName": "Rohan",
-        "lastName" : "Joshi",
-         "email" : "rohan.d@mv.com",
-         "managerId":"75002"        
-        
-
-    },
-    {
-
-        "empId": "75212",
-        "firstName": "Sonia",
-        "lastName" : "Dalal",
-         "email" : "sonia.d@mv.com",
-         "managerId":"75002"        
-        
-
-    },
-    {
-
-        "empId": "75213",
-        "firstName": "Nancy",
-        "lastName" : "Hinshaw",
-         "email" : "nancy.h@mv.com",
-         "managerId":"75003"        
-        
-
-    },
-    {
-
-        "empId": "75214",
-        "firstName": "Samueal",
-        "lastName" : "Jen",
-         "email" : "samueal.j@mv.com",
-         "managerId":"75003"        
-        
-
-    }
-    ,
-    {
-
-        "empId": "75215",
-        "firstName": "Geet",
-        "lastName" : "Gracia",
-         "email" : "geet.g@mv.com",
-         "managerId":"75003"        
-        
-
-    }
-    ,
-    {
-
-        "empId": "75216",
-        "firstName": "Enrique",
-        "lastName" : "Dan",
-         "email" : "enrique.d@mv.com",
-         "managerId":"75003"        
-        
-
-    }
-    ,
-    {
-
-        "empId": "75217",
-        "firstName": "John",
-        "lastName" : "Bret",
-         "email" : "john.b@mv.com",
-         "managerId":"75001"        
-        
-
-    }
-    ,
-
-    {
-
-        "empId": "75001",
-        "firstName": "Pooja",
-        "lastName" : "Gosh",
-         "email" : "pooja.g@mv.com",
-         "managerId":"75004"        
-        
-
-    }
-    ,
-    {
-
-        "empId": "75002",
-        "firstName": "Zen",
-        "lastName" : "Mathur",
-         "email" : "zen.m@mv.com",
-         "managerId":"75004"        
-        
-
-    }
-    ,
-    {
-
-        "empId": "75003",
-        "firstName": "Jackie",
-        "lastName" : "Linda",
-         "email" : "jackie.l@mv.com",
-         "managerId":"75004"        
-        
-
-    }
-    ,
-    {
-
-        "empId": "75004",
-        "firstName": "Jonathan",
-        "lastName" : "Gomes",
-         "email" : "jonathan.g@mv.com",
-         "managerId":""        
-        
-
-    }
+  {
+    "empId": 75206,
+    "firstName": "Harry",
+    "lastName": "Dash",
+    "email": "harry.d@mv.com",
+    "managerId": 75001
+  },
+  {
+    "empId": "75207",
+    "firstName": "Sam",
+    "lastName": "Josh",
+    "email": "sam.d@mv.com",
+    "managerId": "75001"
+  },
+  {
+    "empId": "75208",
+    "firstName": "Marry",
+    "lastName": "Gomes",
+    "email": "marry.g@mv.com",
+    "managerId": "75001"
+  },
+  {
+    "empId": "75209",
+    "firstName": "Peter",
+    "lastName": "Disuja",
+    "email": "peter.d@mv.com",
+    "managerId": "75001"
+  },
+  {
+    "empId": "75210",
+    "firstName": "Richa",
+    "lastName": "Jain",
+    "email": "richa.j@mv.com",
+    "managerId": "75002"
+  },
+  {
+    "empId": "75211",
+    "firstName": "Rohan",
+    "lastName": "Joshi",
+    "email": "rohan.d@mv.com",
+    "managerId": "75002"
+  },
+  {
+    "empId": "75212",
+    "firstName": "Sonia",
+    "lastName": "Dalal",
+    "email": "sonia.d@mv.com",
+    "managerId": "75002"
+  },
+  {
+    "empId": "75213",
+    "firstName": "Nancy",
+    "lastName": "Hinshaw",
+    "email": "nancy.h@mv.com",
+    "managerId": "75003"
+  },
+  {
+    "empId": "75214",
+    "firstName": "Samueal",
+    "lastName": "Jen",
+    "email": "samueal.j@mv.com",
+    "managerId": "75003"
+  },
+  {
+    "empId": "75215",
+    "firstName": "Geet",
+    "lastName": "Gracia",
+    "email": "geet.g@mv.com",
+    "managerId": "75003"
+  },
+  {
+    "empId": "75216",
+    "firstName": "Enrique",
+    "lastName": "Dan",
+    "email": "enrique.d@mv.com",
+    "managerId": "75003"
+  },
+  {
+    "empId": "75217",
+    "firstName": "John",
+    "lastName": "Bret",
+    "email": "john.b@mv.com",
+    "managerId": "75001"
+  },
+  {
+    "empId": "75001",
+    "firstName": "Pooja",
+    "lastName": "Gosh",
+    "email": "pooja.g@mv.com",
+    "managerId": "75004"
+  },
+  {
+    "empId": "75002",
+    "firstName": "Zen",
+    "lastName": "Mathur",
+    "email": "zen.m@mv.com",
+    "managerId": "75004"
+  },
+  {
+    "empId": "75003",
+    "firstName": "Jackie",
+    "lastName": "Linda",
+    "email": "jackie.l@mv.com",
+    "managerId": "75004"
+  },
+  {
+    "empId": "75004",
+    "firstName": "Jonathan",
+    "lastName": "Gomes",
+    "email": "jonathan.g@mv.com",
+    "managerId": ""
+  }
 ]

@@ -3,29 +3,27 @@ const express = require("express");
 const expressHandlebars = require("express-handlebars");
 const cookieParser = require("cookie-parser");
 const { authenticateUser } = require("./middleware/authentication.js");
-const fileUpload = require('express-fileupload');
+const fileUpload = require("express-fileupload");
 
 const {
-  renderHomeGrid ,
- renderAddExpense,
- processAddExpenseForm,
- processDeleteExpenseForm,
- fetchEditDataForm,
- updateEditDataForm,
- processExpenseApprovalForm,
- renderManagerGrid,
- processExpensesRecords,
-  } = require("./controllers/expenseSubmissionController.js");
- 
+  renderHomeGrid,
+  renderAddExpense,
+  processAddExpenseForm,
+  processDeleteExpenseForm,
+  fetchEditDataForm,
+  updateEditDataForm,
+  processExpenseApprovalForm,
+  renderManagerGrid,
+  processExpensesRecords,
+} = require("./controllers/expenseSubmissionController.js");
+
 const {
   renderSignupForm,
   processSignupSubmission,
   renderLoginForm,
   processLoginSubmission,
-  renderSignout
- } = require("./controllers/employeeController.js");
-
-
+  renderSignout,
+} = require("./controllers/employeeController.js");
 
 const app = express();
 
@@ -39,14 +37,11 @@ app.engine(
 
 app.set("view engine", "handlebars");
 
-
-
 // middleware
 app.use(express.static(__dirname + "/public"));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cookieParser());
-
 
 // enable files upload
 app.use(fileUpload());
@@ -64,20 +59,14 @@ app.get("/signout", renderSignout);
 
 app.get("/home", renderHomeGrid);
 app.get("/approvedExpenses", renderHomeGrid);
-app.get("/addNewExpense",renderAddExpense);
-app.post("/addNewExpense",processAddExpenseForm);
-app.get("/editExpense",fetchEditDataForm);
-app.post("/editExpense",updateEditDataForm);
-app.get('/delete', processDeleteExpenseForm );
-app.post('/home', processExpenseApprovalForm );
+app.get("/addNewExpense", renderAddExpense);
+app.post("/addNewExpense", processAddExpenseForm);
+app.get("/editExpense", fetchEditDataForm);
+app.post("/editExpense", updateEditDataForm);
+app.get("/delete", processDeleteExpenseForm);
+app.post("/home", processExpenseApprovalForm);
 app.get("/manager-home", renderManagerGrid);
-app.post('/manager-home', processExpensesRecords);
-
-
-
-
-//app.get("/forgotPassword", renderResetPasswordRequestForm);
-//app.post("/forgotPassword", processResetPasswordSubmission);
+app.post("/manager-home", processExpensesRecords);
 
 // error handling middleware
 app.use((err, req, res, next) => {

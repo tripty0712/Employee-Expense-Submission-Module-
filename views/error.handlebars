@@ -2,7 +2,15 @@
   <div class="container">
     <section>
       <h4>
-        Thankyou for visting Us. You have successfully logged out.
+        {{#if message}}
+        {{message}}
+
+        {{/if}}
+
+        {{#if !message}}
+        Unexpected Error, Please try again in a while.
+
+        {{/if}}
       </h4>
     </section>
   </div>

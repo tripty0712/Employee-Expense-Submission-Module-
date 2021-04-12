@@ -1,81 +1,85 @@
-
-
 <div class="container">
-	<div >
-   {{#if expStatus}}
-             <div >
-    <button type="button" id="btnApproveClick" class="btn grid-button"> Approve Expenses</button>
-        
-    <button type="button"  id="btnRejectClick"  class="btn grid-button"> Reject Expenses</button>
-          </div>
-          {{/if}}
-         
-          <span></span>
-          <div >
-               <h4><b>Manager Dashboard :  {{#if status}}  {{status}} Expenses by {{/if}}{{employeeName}} </b></h4>
-                        
-          </div>
-      
-	  <div class="col-md-12">
-       
-               <div class="table-responsive ">
-            <table id="example" class="table table-bordered" style="width:100%">
-                  <thead><tr class="header-row" >
+    <div>
+        {{#if expStatus}}
+        <div>
+            <button type="button" id="btnApproveClick" class="btn grid-button"> Approve Expenses</button>
 
-                      <th><input type="checkbox" id="checkall" /></th>
+            <button type="button" id="btnRejectClick" class="btn grid-button"> Reject Expenses</button>
+        </div>
+        {{/if}}
 
-                       <th>Expense Type</th>
-                        <th>Expense Date</th>
-                         <th>Receipt</th>
-                        <th>Amount</th>
-                        
+        <span></span>
+        <div>
+            <h4><b>Manager Dashboard : {{#if status}} {{status}} Expenses by {{/if}}{{employeeName}} </b></h4>
+
+        </div>
+
+        <div class="col-md-12">
+
+            <div class="table-responsive ">
+                <table id="example" class="table table-bordered" style="width:100%">
+                    <thead>
+                        <tr class="header-row">
+
+                            <th><input type="checkbox" id="checkall" /></th>
+
+                            <th>Expense Type</th>
+                            <th>Expense Date</th>
+                            <th>Receipt</th>
+                            <th>Amount</th>
+
                         </tr>
                     </thead>
-                    <tbody >
+                    <tbody>
                         {{#each managerList}}
-                        <tr class="row-detail" itemid="_id" >
+                        <tr class="row-detail" itemid="_id">
 
-                            
-                              <td> <input type="checkbox" id="{{_id}}"  name="chkExpenses" class="checkthis" />  </td> 
-                           
-                            
+
+                            <td> <input type="checkbox" id="{{_id}}" name="chkExpenses" class="checkthis" /> </td>
+
+
                             <td>{{expType}}</td>
-                            <td > {{expDate}}</td>
-                            <td > 
-                             {{#if expReceipt}}
-                                 <a href="/uploads/{{expReceipt}}" target="_blank" ><p data-placement="top" data-toggle="tooltip" title="{{expReceipt}}"><button class="btn btn-primary btn-xs" data-title="File" data-toggle="modal"  ><span class="glyphicon glyphicon-file"></span></button></p></a>
-                             {{/if}}</td>
+                            <td> {{expDate}}</td>
+                            <td>
+                                {{#if expReceipt}}
+                                <a href="/uploads/{{expReceipt}}" target="_blank">
+                                    <p data-placement="top" data-toggle="tooltip" title="{{expReceipt}}"><button
+                                            class="btn btn-primary btn-xs" data-title="File" data-toggle="modal"><span
+                                                class="glyphicon glyphicon-file"></span></button></p>
+                                </a>
+                                {{/if}}
+                            </td>
                             <td> ${{expAmount}}</td>
                         </tr>
-                    {{/each}}         
+                        {{/each}}
                     </tbody>
-            </table>
+                </table>
             </div>
-            
-            </div>
+
         </div>
+    </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="/scripts/script.js"></script>
 
-    <script>
-     $(document).ready(function(){
-   $('#example').DataTable();
-  
-$("#example #checkall").click(function () {
-        if ($("#example #checkall").is(':checked')) {
-            $("#example input[type=checkbox]").each(function () {
-                $(this).prop("checked", true);
-            });
+<script>
+    $(document).ready(function () {
+        $('#example').DataTable();
 
-        } else {
-            $("#example input[type=checkbox]").each(function () {
-                $(this).prop("checked", false);
-            });
-        }
+        $("#example #checkall").click(function () {
+            if ($("#example #checkall").is(':checked')) {
+                $("#example input[type=checkbox]").each(function () {
+                    $(this).prop("checked", true);
+                });
+
+            } else {
+                $("#example input[type=checkbox]").each(function () {
+                    $(this).prop("checked", false);
+                });
+            }
+        });
+
+
     });
-     
-   
-});
 
-    </script>
+</script>

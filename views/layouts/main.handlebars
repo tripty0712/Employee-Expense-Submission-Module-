@@ -1,94 +1,98 @@
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-   	<!--Bootsrap 3 CDN-->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!--Bootsrap 3 CDN-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <!-- Bootstrap DataTable CSS -->
-  	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap.min.css">
-    <!-- jQuery js-->
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <!-- Bootstrap js -->
-	 <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
-       <!-- Bootstrap Datatable js -->    
-    <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap.min.js"></script>
-     <!--Fontawesome CDN-->
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap.min.css">
+  <!-- jQuery js-->
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <!-- Bootstrap js -->
+  <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+  <!-- Bootstrap Datatable js -->
+  <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap.min.js"></script>
+  <!--Fontawesome CDN-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+    integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
-    
-     <link href="styles/layout2.css" rel="stylesheet" />
-    <title>Employee Expense Reporting</title>
-  </head>
-  <body>
-<div class="wrapper">
-  <!-- Sidebar Holder -->
-  <nav id="sidebar">
-    <div class="sidebar-header">
-      <h3>Mason Vanguard Consulting</h3>
-      
+
+  <link href="styles/layout2.css" rel="stylesheet" />
+  <title>Employee Expense Reporting</title>
+</head>
+
+<body>
+  <div class="wrapper">
+    <!-- Sidebar Holder -->
+    <nav id="sidebar">
+      <div class="sidebar-header">
+        <h3>Mason Vanguard Consulting</h3>
+
+      </div>
+
+      <ul class="list-unstyled components">
+        <p Style="text-decoration:underline; ">Expense Submission Module</p>
+
+        <li>
+          <a href="/ApprovedExpenses?status=Approved">Approved Expenses</a>
+        </li>
+        <li>
+          <a href="/home?status=Rejected">Rejected Expenses</a>
+        </li>
+        <li>
+          <a href="/home?status=Pending">Submitted Expenses</a>
+
+        </li>
+        <li>
+          <a href="/home">Saved Expenses</a>
+        </li>
+      </ul>
+
+      {{#if isManager}}
+      <ul class="list-unstyled components">
+        <p Style="text-decoration:underline; ">Manager Approval Module</p>
+
+        <li>
+          <a href="/manager-home?status=Approved">Approved List</a>
+        </li>
+        <li>
+          <a href="/manager-home?status=Rejected">Rejected List</a>
+        </li>
+        <li>
+          <a href="/manager-home?status=Pending">Pending Request</a>
+        </li>
+      </ul>
+      {{/if}}
+
+      <ul class="list-unstyled CTAs">
+        <li><a class="nav-link" href="/signout"><span class="fas fa-sign-in-alt"></span> Sign Out</a>
+        </li>
+      </ul>
+    </nav>
+
+
+
+    {{{body}}}
+  </div>
+
+
+
+  <footer>
+    <div class="copyright">
+      <p>&copy 2020 - Mason Vanguard Consulting</p>
+
     </div>
+    <div class="social">
+      <a href="mailto:info@mvconsulting.com" class="support">
+        Email Us: info@mvconsulting.com
+      </a>
 
-    <ul class="list-unstyled components">
-      <p Style="text-decoration:underline; ">Expense Submission Module</p>
-     
-      <li>
-        <a href="/ApprovedExpenses?status=Approved">Approved Expenses</a>
-     </li>
-      <li>
-        <a href="/home?status=Rejected">Rejected Expenses</a>
-      </li>
-      <li>
-        <a href="/home?status=Pending">Submitted Expenses</a>
-        
-      </li>
-      <li>
-        <a href="/home">Saved Expenses</a>
-      </li>
-    </ul>
-
-{{#if isManager}}
-<ul class="list-unstyled components">
-      <p Style="text-decoration:underline; ">Manager Approval Module</p>
-     
-      <li>
-        <a href="/manager-home?status=Approved">Approved List</a>
-     </li>
-      <li>
-        <a href="/manager-home?status=Rejected">Rejected List</a>
-      </li>
-      <li>
-        <a href="/manager-home?status=Pending">Pending Request</a>
-       </li>
-       </ul>
-{{/if}}
-
-    <ul class="list-unstyled CTAs">
-      <li><a class="nav-link" href="/signout"><span class="fas fa-sign-in-alt"></span> Sign Out</a>
-</li>
-    </ul>
-  </nav>
-
-  
-
-      {{{body}}}
-  </div>
-  
-  
-
-        <footer>
-  <div class="copyright">
-    <p>&copy 2020 - Mason Vanguard Consulting</p>
-   
-  </div>
-  <div class="social">
-    <a href="mailto:info@mvconsulting.com" class="support"> 
-   Email Us: info@mvconsulting.com 
-     </a>
-  
-    <a href="#" class="tweet">t</a>
-    <a href="#" class="linked">in</a>
-  </div>
-</footer>
+      <a href="#" class="tweet">t</a>
+      <a href="#" class="linked">in</a>
     </div>
-  </body>
+  </footer>
+  </div>
+</body>
+
 </html>

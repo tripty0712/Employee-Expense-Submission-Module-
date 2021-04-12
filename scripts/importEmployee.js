@@ -1,5 +1,5 @@
 const db = require("../db.js");
-const { createEmployee} = require("../services/employeeService.js");
+const { createEmployee } = require("../services/employeeService.js");
 
 const employees = require("../data/employeeData.json");
 
