@@ -1,6 +1,5 @@
 const { registerEmployee,loginUser,empStatus} = require("../services/empAuthService.js");
 
-
 function renderSignupForm(req, res) {
     res.render("signup",{
       layout: "main2",
@@ -40,9 +39,11 @@ else if(token === 'NOT_VALID_EMP')
      {
       
       res.cookie("jwt", token, { httpOnly: true });
+
     
       message = "You have successfully logged in";
       const isManager=await empStatus(req.empId);
+      
      if(isManager)
      {
      

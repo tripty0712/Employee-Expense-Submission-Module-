@@ -4,6 +4,7 @@ const expressHandlebars = require("express-handlebars");
 const cookieParser = require("cookie-parser");
 const { authenticateUser } = require("./middleware/authentication.js");
 const fileUpload = require('express-fileupload');
+const session = require('express-session');
 
 
 const {
@@ -51,6 +52,7 @@ app.use(fileUpload({
   tempFileDir : '/tmp/'
 }));
 
+app.use(session({secret: 'ssshhhhh',saveUninitialized: true,resave: true}));
 
 
 
