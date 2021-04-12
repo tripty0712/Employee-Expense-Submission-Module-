@@ -2,12 +2,13 @@
 
 <div class="container">
 	<div >
-   
-          <div >
+   {{#if expStatus}}
+             <div >
     <button type="button" id="btnApproveClick" class="btn grid-button"> Approve Expenses</button>
         
     <button type="button"  id="btnRejectClick"  class="btn grid-button"> Reject Expenses</button>
           </div>
+          {{/if}}
          
           <span></span>
           <div >
@@ -21,7 +22,9 @@
                <div class="table-responsive ">
             <table id="example" class="table table-bordered" style="width:100%">
                   <thead><tr class="header-row" >
-                       <th><input type="checkbox" id="checkall" /></th>
+
+                      <th><input type="checkbox" id="checkall" /></th>
+
                        <th>Expense Type</th>
                         <th>Expense Date</th>
                          <th>Receipt</th>
@@ -32,7 +35,11 @@
                     <tbody >
                         {{#each managerList}}
                         <tr class="row-detail" itemid="_id" >
-                            <td><input type="checkbox" id="{{_id}}"  name="chkExpenses" class="checkthis" /></td>
+
+                            
+                              <td> <input type="checkbox" id="{{_id}}"  name="chkExpenses" class="checkthis" />  </td> 
+                           
+                            
                             <td>{{expType}}</td>
                             <td > {{expDate}}</td>
                             <td > 
@@ -40,8 +47,7 @@
                                  <a href="/uploads/{{expReceipt}}" target="_blank" ><p data-placement="top" data-toggle="tooltip" title="{{expReceipt}}"><button class="btn btn-primary btn-xs" data-title="File" data-toggle="modal"  ><span class="glyphicon glyphicon-file"></span></button></p></a>
                              {{/if}}</td>
                             <td> ${{expAmount}}</td>
-                                        
-                       </tr>
+                        </tr>
                     {{/each}}         
                     </tbody>
             </table>

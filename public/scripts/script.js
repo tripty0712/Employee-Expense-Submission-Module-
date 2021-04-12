@@ -10,14 +10,17 @@ btn.addEventListener("click", async (event) => {
                $("#example input[type=checkbox]:checked").each(function () {
                 selected.push(this.id);
             });
-    if(selected.length=== 0)
-    { alert('Please select record before proceed to any action') };
-    }
- else
- {
-    const response = await axios.post(`http://localhost:4500/home?arrItem=${selected}`); 
-    response.then((data)=>{console.log("data:", data); });
- }
+            if (selected.length === 0) {
+              alert('Please select record before proceed to any action')
+             }
+          else {
+
+              axios.post(`http://localhost:4500/home?arrItem=${selected}`)
+                  .then((data) => { console.log("data:", data); 
+                  window.location = '/home';}).catch(err => console.log(err));
+
+          }
+        }
     });
    
    }
@@ -36,16 +39,17 @@ if(btnApprove)
             });
     alert(selected);
             if(selected.length=== 0)
-            { alert('Please select record before proceed to any action') };
+            { alert('Please select record before proceed to any action') ;
             }
          else
          {
             alert('in process approval');
-            const response = await axios.post(`http://localhost:4500/actionApproval?arrItem=${selected}`); 
-                console.log("data:", data); 
+             axios.post(`http://localhost:4500/manager-home?actionType=Approve&arrItem=${selected}`) .then((data) => { console.log("data:", data); 
+             window.location = '/manager-home';}).catch(err => console.log(err));
+
                 
          }
-
+    }
     });
    }  
 
@@ -63,12 +67,16 @@ if(btnReject)
             });
     
             if(selected.length=== 0)
-            { alert('Please select record before proceed to any action') };
-            }
+            { alert('Please select record before proceed to any action') }
+            
          else
          {
-            const response = await axios.post(`http://localhost:4500/manager-home?actionType=Reject&arrItem=${selected}`); 
-            response.then((data)=>{console.log("data:", data); });
+
+          axios.post(`http://localhost:4500/manager-home?actionType=Reject&arrItem=${selected}`) .then((data) => { console.log("data:", data); 
+          window.location = '/manager-home';}).catch(err => console.log(err));
+
+         
          }
+        }
     });
 }

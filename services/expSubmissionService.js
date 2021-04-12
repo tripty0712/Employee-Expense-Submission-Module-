@@ -1,9 +1,5 @@
 const empExpense = require("../models/empExpense.js");
 
-
-
-
-
 async function getEmpExpenseList(empId,status)
 {
  if(!status)
@@ -23,7 +19,7 @@ async function getManagerList(empId,status)
 }
 async function createExpense(fields,employeeId)
 {
-   console.log('in create');
+   console.log('in create',fields);
   
    let date = getDateTime();
     //let expDate=getDate(fields.getDate);

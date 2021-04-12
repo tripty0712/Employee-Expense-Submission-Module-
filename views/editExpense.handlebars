@@ -3,8 +3,8 @@
         <div style="align-items: center;">
           <div class="cardInput">
               
-  <form class="form-horizontal"   method="POST" enctype="multipart/form-data" >
- <fieldset>
+  <form class="form-horizontal"   method="POST" enctype="multipart/form-data"  >
+ 
   <span></span>
    
      <div class="card-header-input">
@@ -37,9 +37,9 @@
   <div class="form-group">
         <label class="col-sm-3 control-label" for="Expense-Receipt">Expense Receipt </label>
         <div class="col-sm-7">
-            <input type="file" class="form-control-file" id="exampleFormControlFile1" name="expReceipt" value="{{expdata.expReceipt}}">
+            <input type="file" class="form-control" id="expReceipt" name="expReceipt" value="{{expdata.expReceipt}}">
                  {{#if expdata.expReceipt}} 
-                <a href="/public/uploads/{{expdata.expReceipt}}" target="_blank">{{expdata.expReceipt}} </a>
+                <a href="/public/uploads/{{expdata.expReceipt}}" target="_blank"><span class="alert alert-info">{{expdata.expReceipt}}</span> </a>
                  {{/if}}
        </div>
   </div>
@@ -52,24 +52,20 @@
      </div> 
       <div class="form-group">
         <div class="col-sm-offset-3 col-sm-7">
-                  <input type="submit" value="Create" class="btn  login_btn" name="submit"  formaction="addNewExpense">
+                  <input type="submit" value="Update" class="btn  login_btn" name="submit" formaction="editExpense" >
                   <span >   </span>
                    <input class="btn  login_btn" type="reset" value="Reset" >
                 </div>
                </div>
             </div>
    <input type="hidden" value={{expdata._id}} name="_id" >
-                 <input type="hidden" value="" name="expStatus">
-   </div></fieldset>
+   </div>
     </form>
         </div>
       </div>
       </div>
   
-
-
-
-  
+ 
 <script type="text/javascript">
 $(function() {
     console.log={{expdata.expType}};

@@ -79,7 +79,7 @@ app.post("/editExpense",updateEditDataForm);
 app.get('/delete', processDeleteExpenseForm );
 app.post('/home', processExpenseApprovalForm );
 app.get("/manager-home", renderManagerGrid);
-app.post('/actionApproval', processExpensesRecords);
+app.post('/manager-home', processExpensesRecords);
 
 
 

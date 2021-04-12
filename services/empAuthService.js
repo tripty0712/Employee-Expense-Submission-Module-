@@ -72,11 +72,6 @@ async function registerEmployee(fields) {
    }
  }
  
-async function empStatus(empId)
-{
- return await empAuth.findOne({managerId: empId }).exec();
-
-}
 
 
  module.exports = {
@@ -84,5 +79,5 @@ async function empStatus(empId)
     getEmpLogin,
     loginUser,
     verifyEmail,
-    empStatus,
+   
   };

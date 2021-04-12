@@ -12,21 +12,12 @@ const {getEmpExpenseList,
 
 const expenseType = require("../data/expenseType.js");
 const{
-  getEmployeeRecord,
+  getEmployeeName,empIsManager
 
 }= require("../services/employeeService.js")
 
-const express = require('express');
-const fileUpload = require('express-fileupload');
-const { response } = require("express");
 
-const app = express();
-
-// default options
-app.use(fileUpload());
-
-
-   //Render to main grid after login 
+//Render to main grid after login 
 async function renderHomeGrid(req, res,next) {
  
 
@@ -43,17 +34,18 @@ async function renderHomeGrid(req, res,next) {
       {empExpenseList = await getEmpExpenseList(req.empId,status);}
         console.log(empExpenseList);
       //to fetch the name of employee
-       const empData= await getEmployeeRecord(req.empId);
+      const employeeName=await getEmployeeName(req.empId);
 
-      const employeeName=empData.firstName +" "+empData.lastName;
+      //check if employee is manager
+      const isManager=await empIsManager(req.empId);
 
       const expenseList = empExpenseList.map(expense => {return {...expense, expDate: expense.expDate.toISOString().split('T')[0]}})
       if(status==='Approved')
       { console.log('in approved');
-          res.render("approvedExpenses",{empExpenseList:expenseList,employeeName,  });}
+          res.render("approvedExpenses",{empExpenseList:expenseList,employeeName,isManager  });}
         else
-        {res.render("home",{empExpenseList:expenseList,status,employeeName, });}
-
+        { console.log('in home grid');
+          res.render("home",{empExpenseList:expenseList,status,employeeName,isManager });}
   }
   catch{
 
@@ -84,7 +76,8 @@ async function processAddExpenseForm(req, res,next)
      try{
     if (req.files) {
     // The name of the input field (i.e. "expReceipt") is used to retrieve the uploaded file
-    sampleFile = req.files.expReceipt;   
+    sampleFile = req.files.expReceipt; 
+    console.log('input file',sampleFile)  ;
     const msg=  processUploadFileForm(sampleFile,res);
     }
   
@@ -143,9 +136,10 @@ async function updateEditDataForm(req, res,next)
         // The name of the input field (i.e. "expReceipt") is used to retrieve the uploaded file
           sampleFile = req.files.expReceipt;
           const msg=  processUploadFileForm(sampleFile,res);
+          console.log('in file upload');
       } 
 
-      console.log(req.body._id);
+      console.log(req.body.expReceipt);
       const status= await updateExpenseRecord( {...req.body},req.empId );
       console.log(status);
       if(status)
@@ -164,14 +158,13 @@ async function updateEditDataForm(req, res,next)
     console.log(idArray);
      try{
 
+      //fetching the employee manager information from master table
     const empData= await getEmployeeRecord(employeeId);
 
     const mngr=empData.managerId;
 
      console.log(mngr);
-   
     
-
     const IsUpdated=await submitApprovalExpense(idArray,mngr);
 
     res.redirect('/home'); 
@@ -185,21 +178,29 @@ async function updateEditDataForm(req, res,next)
   async function renderManagerGrid(req, res) {
  
     //get the status from querystring
-    const status=req.query.status;
+    let status=req.query.status;
     let  managerList;
+    let expenseList;
+   //to fetch the name of employee
    
-  if(status){
-       managerList = await getManagerList(req.empId,status);}
-    
-       //to fetch the name of employee
-     const empData= await getEmployeeRecord(req.empId);
   
-    const employeeName=empData.firstName +" "+empData.lastName;
+   const employeeName=await getEmployeeName(req.empId);
   
-    const expenseList = managerList.map(expense => {return {...expense, expDate: expense.expDate.toISOString().split('T')[0]}})
-   
+
+  if(!status){status="Pending";  }
+
+       managerList = await getManagerList(req.empId,status);
+
+       if(managerList)
+    {   
+    expenseList = managerList.map(expense => {return {...expense, expDate: expense.expDate.toISOString().split('T')[0]}})
+    }
    let isManager=true;
-    res.render("manager-home",{managerList:expenseList,status,employeeName,isManager });
+
+   let expStatus;
+   if (status==='Pending')
+   { expStatus="all";}
+    res.render("manager-home",{managerList:expenseList,status,employeeName,isManager,expStatus });
   
  }
 
@@ -207,24 +208,27 @@ async function processExpensesRecords (req,res)
 {
   const employeeId=req.empId;
 
-  
+  const actionRequest=req.query.actionType;
   console.log("process");
   const idArray= (req.query.arrItem).split(',');
  
-  console.log(idArray);
+  console.log(actionRequest);
   let IsUpdated;
   if (actionRequest === 'Approve')
   {
+    console.log('in approvew');
     IsUpdated =await approvedExpenses(idArray);
 
   }
   if(actionRequest === 'Reject')
   {
+    console.log('in reject');
     IsUpdated =await rejectedExpenses(idArray);
   }
 
   let isManager=true;
-  res.render("manager-home",{managerList:expenseList,status,employeeName,isManager });
+  res.redirect('/manager-home');
+
 
 
 }

@@ -1,4 +1,6 @@
-const { registerEmployee,loginUser,empStatus} = require("../services/empAuthService.js");
+const { registerEmployee,loginUser,} = require("../services/empAuthService.js");
+
+const { empIsManager,} = require("../services/employeeService.js");
 
 function renderSignupForm(req, res) {
     res.render("signup",{
@@ -15,7 +17,7 @@ else if(token === 'NOT_VALID_EMP')
     { message="The Employee Id or Email address entered is not valid. Please try again."}
  else if (token) {
      
-      message = "Thank you for registration!";
+      message = "Thank you for registration,Please login to proceed further ";
       res.render("login", { layout: "main2",
         message,  });
      }
@@ -42,7 +44,7 @@ else if(token === 'NOT_VALID_EMP')
 
     
       message = "You have successfully logged in";
-      const isManager=await empStatus(req.empId);
+      const isManager=await empIsManager(req.empId);
       
      if(isManager)
      {
@@ -54,7 +56,7 @@ else if(token === 'NOT_VALID_EMP')
      }
 else
 {
-  setCookie('isManager', false, 30);
+ 
   res.redirect('/home');}
     } 
     else {
